@@ -1,16 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Personal Demo Card</title>
+
+<title>Personal Demo Card Preview</title>
 
 <link rel="stylesheet" href="css/cardview.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
 </head>
 
 <body>
@@ -18,49 +19,92 @@
 <header class="preview-header">
   <div>
     <span>PERSONAL DESIGN PREVIEW</span>
-    <h1>Personal Demo Card</h1>
+    <h1>Demo License Card</h1>
   </div>
-  <button class="edit-button" onclick="editInformation()">Edit Information</button>
+
+  <button class="edit-button" onclick="editInformation()">
+    Edit Information
+  </button>
 </header>
 
 <main class="preview-container">
 
-  <div class="cards-layout">
+  <div class="switch-area">
+    <button class="side-button active" id="frontButton" onclick="showSide('front')">Front</button>
+    <button class="side-button" id="backButton" onclick="showSide('back')">Back</button>
+  </div>
 
-    <!-- FRONT -->
-    <section class="demo-card front-card">
+  <div class="card-scroll">
 
-      <div class="card-heading">
-        <div class="demo-logo">PD</div>
-        <div class="heading-text">
-          <strong>ব্যক্তিগত ড্রাইভিং কার্ড</strong>
-          <span>PERSONAL DRIVING CARD DEMO</span>
+    <!-- FRONT SIDE -->
+
+    <section class="license-card front-card" id="frontCard">
+
+      <img
+        class="watermark-image"
+        src="assets/demo-logo.png"
+        alt="Personal Demo Watermark"
+      >
+
+      <div class="card-top">
+
+        <div class="brand-mark">
+          <img
+            src="assets/demo-logo.png"
+            alt="Personal Demo Brand">
         </div>
-        <div class="sample-stamp">SAMPLE<br>NOT VALID</div>
+
+        <div class="card-title">
+          <strong>ব্যক্তিগত ই-ড্রাইভিং কার্ড ডেমো</strong>
+          <b>Personal E-Driving Card Demo</b>
+        </div>
+
+        <div class="country-label">
+
+          <div class="country-text">
+            <strong>ব্যক্তিগত ডিজাইন ডেমো</strong>
+            <small>PERSONAL DESIGN PREVIEW</small>
+          </div>
+
+          <div class="header-logo-area">
+
+            <!-- Top-right demo logo -->
+            <img
+              src="assets/demo-logo.png"
+              class="header-demo-logo"
+              alt="Personal Demo Logo"
+            >
+
+            <!-- QR code below the logo -->
+            <div id="qrCode"></div>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="front-body">
+      <div class="front-content">
 
-        <div class="photo-column">
-          <div class="photo-frame">
-            <img id="cardPhoto" alt="Demo Photo">
-          </div>
-          <span class="photo-caption">DEMO PHOTO</span>
+        <div class="photo-frame">
+          <img id="cardPhoto" alt="Uploaded Demo Photo">
         </div>
 
-        <div class="front-details">
+        <div class="details">
 
           <div class="field">
             <span>নাম / Name</span>
             <strong id="cardName">—</strong>
           </div>
 
+          <!-- Date of Birth -->
           <div class="field">
             <span>জন্ম তারিখ / Date of Birth</span>
             <strong id="cardDob">—</strong>
           </div>
 
-          <div class="field">
+          <!-- Blood Group directly below Date of Birth -->
+          <div class="field blood-group-field">
             <span>রক্তের গ্রুপ / Blood Group</span>
             <strong id="cardBloodGroup">—</strong>
           </div>
@@ -70,104 +114,127 @@
             <strong id="cardGuardian">—</strong>
           </div>
 
-          <div class="date-grid">
+          <!-- Issue, Validity and Demo Issuer on the same row -->
+          <div class="date-row validity-issuer-row">
+
             <div class="field">
               <span>ইস্যু / Issue</span>
               <strong id="cardIssue">—</strong>
             </div>
+
             <div class="field">
               <span>মেয়াদ / Valid Until</span>
               <strong id="cardExpiry">—</strong>
             </div>
+
+            <div class="field">
+              <span>ডেমো প্রদানকারী / Demo Issuer</span>
+              <strong id="cardIssuer">—</strong>
+            </div>
+
           </div>
 
-          <div class="field">
-            <span>ডেমো রেফারেন্স / Demo Reference</span>
-            <strong id="cardReference">—</strong>
+          <p class="tiny-note">
+            PERSONAL DEMO ONLY — NOT VALID FOR IDENTIFICATION OR DRIVING
+          </p>
+
+          <!-- Reference Number -->
+          <div class="reference-issuer-row">
+
+            <div class="field">
+              <span>ডেমো রেফারেন্স / Demo Reference</span>
+              <strong id="cardReference">—</strong>
+            </div>
+
           </div>
 
-          <div class="field">
-            <span>ডেমো প্রদানকারী / Demo Issuer</span>
-            <strong id="cardIssuer">—</strong>
-          </div>
-
-        </div>
-
-        <div class="qr-column">
-          <div id="qrCode"></div>
-          <small>DEMO QR</small>
         </div>
 
       </div>
 
-      <div class="sample-watermark">SAMPLE</div>
-
-      <div class="card-footer">
-        PERSONAL DEMO ONLY — NOT A GOVERNMENT DOCUMENT
+      <div class="front-footer">
+        PERSONAL DEMO CARD — NOT AN OFFICIAL DOCUMENT
       </div>
 
     </section>
 
 
-    <!-- BACK -->
-    <section class="demo-card back-card">
+    <!-- BACK SIDE -->
 
-      <div class="back-heading">
-        <div>
-          <strong>ব্যক্তিগত কার্ডের তথ্য</strong>
-          <span>PERSONAL DEMO INFORMATION</span>
-        </div>
-        <div class="sample-stamp">SAMPLE<br>NOT VALID</div>
+    <section class="license-card back-card hidden" id="backCard">
+
+      <img
+        class="watermark-image"
+        src="assets/demo-logo.png"
+        alt="Personal Demo Watermark"
+      >
+
+      <div class="back-warning">
+        PERSONAL DEMO CARD — NO OFFICIAL OR LEGAL VALIDITY
       </div>
 
-      <div class="back-content">
+      <div class="back-top">
 
-        <div class="back-photo">
+        <div class="mini-photo">
           <img id="backPhoto" alt="Demo Photo">
         </div>
 
-        <div class="address-field field">
+        <div class="barcode-area">
+          <span>PERSONAL DEMO CODE</span>
+          <svg id="demoBarcode"></svg>
+        </div>
+
+        <div class="back-brand">
+          <img
+            src="assets/demo-logo.png"
+            alt="Personal Demo Brand"
+            class="back-brand-logo"
+          >
+        </div>
+
+      </div>
+
+      <div class="back-info">
+
+        <div class="field">
           <span>ঠিকানা / Address</span>
           <strong id="backAddress">—</strong>
         </div>
 
-        <div class="back-divider"></div>
+      </div>
 
-        <div class="back-data-grid">
+      <div class="back-columns">
 
-          <div class="field">
-            <span>নমুনা যানবাহন শ্রেণি / Vehicle Class</span>
-            <strong id="backClass">—</strong>
-          </div>
-
-          <div class="field">
-            <span>Pre Ref No.</span>
-            <strong id="backPreRefNo">—</strong>
-          </div>
-
-          <div class="field">
-            <span>ইস্যু তারিখ / Issue Date</span>
-            <strong id="backIssueDate">—</strong>
-          </div>
-
+        <div class="field">
+          <span>নমুনা যানবাহন শ্রেণি / Vehicle Class</span>
+          <strong id="backClass">—</strong>
         </div>
 
-        <div class="back-qr-block">
-          <div id="backQrCode"></div>
-          <small>PERSONAL DEMO QR<br>NOT FOR OFFICIAL VERIFICATION</small>
+        <div class="field">
+          <span>Pre Ref No.</span>
+          <strong id="backPreRefNo">—</strong>
         </div>
 
-        <div class="back-note">
-          এই কার্ডটি শুধুমাত্র ব্যক্তিগত ডিজাইন প্রদর্শনের জন্য।
-          কোনো সরকারি যাচাই বা আইনি কার্যকারিতা নেই।
+        <div class="field">
+          <span>ইস্যু তারিখ / Issue Date</span>
+          <strong id="backIssueDate">—</strong>
         </div>
 
       </div>
 
-      <div class="sample-watermark back-watermark">SAMPLE</div>
+      <div class="back-qr-area">
+        <div id="backQrCode"></div>
+        <small>PERSONAL DEMO QR — NOT FOR OFFICIAL VERIFICATION</small>
+      </div>
 
-      <div class="card-footer">
-        NOT VALID FOR IDENTIFICATION OR DRIVING
+      <div class="back-message">
+        For personal design demonstration only.<br>
+        No official verification service is connected.<br>
+        <strong>NOT A GOVERNMENT DOCUMENT</strong>
+      </div>
+
+      <div class="back-footer">
+        PERSONAL DEMO CARD DESIGN
       </div>
 
     </section>
@@ -186,5 +253,6 @@
 </main>
 
 <script src="js/cardview.js"></script>
+
 </body>
 </html>
