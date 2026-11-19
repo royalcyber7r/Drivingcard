@@ -132,6 +132,20 @@ body {
 }
 /* BRAND LOGO */
 
+.back-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-brand-logo {
+  display: block;
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+
 .brand-mark {
   width: 66px;
   height: 66px;
