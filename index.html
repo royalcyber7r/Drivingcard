@@ -1,147 +1,124 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DL Demo Studio</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Driving License Demo Generator</title>
+<link rel="stylesheet" href="css/form.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <header class="topbar">
-    <div>
-        <div class="eyebrow">PERSONAL DESIGN PROJECT</div>
-        <h1>DL Demo Studio</h1>
-        <p>নমুনা কার্ড ডিজাইন</p>
-    </div>
-    <span class="header-tag">DEMO ONLY</span>
+  <div>
+    <span class="eyebrow">PERSONAL DESIGN TOOL</span>
+    <h1>ড্রাইভিং লাইসেন্স ডেমো জেনারেটর</h1>
+    <p>Personal Sample Card Designer</p>
+  </div>
+  <span class="header-tag">DEMO ONLY</span>
 </header>
 
 <main class="layout">
-    <section class="panel">
+<section class="panel">
 
-        <div class="section-heading">
-            <div class="eyebrow">CARD INFORMATION</div>
-            <h2>ব্যক্তিগত তথ্য পূরণ করুন</h2>
-        </div>
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">CARD INFORMATION</span>
+      <h2>তথ্য পূরণ করুন</h2>
+    </div>
+    <button type="button" class="text-button" id="resetBtn">Reset</button>
+  </div>
 
-        <form id="licenseForm">
+  <form id="licenseForm">
 
-            <div class="form-grid">
+    <div class="form-grid">
 
-                <label class="full">
-                    নাম / Name
-                    <input type="text" id="name" required
-                           placeholder="নাম লিখুন">
-                </label>
+      <label class="full">
+        নাম / Name
+        <input name="name" id="name" required placeholder="আপনার নাম">
+      </label>
 
-                <label>
-                    জন্ম তারিখ / Date of Birth
-                    <input type="date" id="dob" required>
-                </label>
+      <label>
+        জন্ম তারিখ / Date of Birth
+        <input name="dob" id="dob" type="date" required>
+      </label>
 
-                <label>
-                    পিতা / স্বামী
-                    <input type="text" id="guardian" required
-                           placeholder="নাম লিখুন">
-                </label>
+      <label>
+        পিতা / স্বামী / Guardian
+        <input name="guardian" id="guardian" required placeholder="Guardian name">
+      </label>
 
-                <label>
-                    ইস্যু তারিখ / Issue Date
-                    <input type="date" id="issueDate" required>
-                </label>
+      <label>
+        ইস্যু তারিখ / Issue Date
+        <input name="issue" id="issue" type="date" required>
+      </label>
 
-                <label>
-                    মেয়াদ শেষ / Expiry Date
-                    <input type="date" id="expiryDate" required>
-                </label>
+      <label>
+        মেয়াদ শেষ / Expiry Date
+        <input name="expiry" id="expiry" type="date" required>
+      </label>
 
-                <label>
-                    রেফারেন্স নং / Demo Reference
-                    <input type="text" id="reference" required
-                           placeholder="DEMO-000001">
-                </label>
+      <label>
+        নমুনা রেফারেন্স / Demo Reference
+        <input name="reference" id="reference" placeholder="DEMO-000001" required>
+      </label>
 
-                <label>
-                    প্রদানকারী প্রতিষ্ঠান / Demo Issuer
-                    <input type="text" id="issuer" required
-                           placeholder="প্রতিষ্ঠানের নাম">
-                </label>
+      <label>
+        নমুনা প্রদানকারী / Demo Issuer
+        <input name="issuer" id="issuer" placeholder="Personal Design Studio" required>
+      </label>
 
-                <label class="full">
-                    ঠিকানা / Address
-                    <input type="text" id="address" required
-                           placeholder="সম্পূর্ণ ঠিকানা">
-                </label>
+      <label class="full">
+        ঠিকানা / Address
+        <input name="address" id="address" required placeholder="Sample Address, Bangladesh">
+      </label>
 
-                <label class="full">
-                    লাইসেন্স ক্লাস / Vehicle Class
-                    <input type="text" id="vehicleClass" required
-                           placeholder="LIGHT VEHICLE, MOTORCYCLE">
-                </label>
+      <label class="full">
+        নমুনা যানবাহন শ্রেণি / Vehicle Class
+        <select name="vehicle" id="vehicle">
+          <option value="LIGHT VEHICLE">LIGHT VEHICLE</option>
+          <option value="MOTORCYCLE">MOTORCYCLE</option>
+          <option value="LIGHT VEHICLE, MOTORCYCLE">LIGHT VEHICLE, MOTORCYCLE</option>
+          <option value="HEAVY VEHICLE">HEAVY VEHICLE</option>
+        </select>
+      </label>
 
-            </div>
+    </div>
 
-            <!-- PHOTO UPLOAD -->
+    <div class="upload-row">
+      <div>
+        <strong>ছবি আপলোড / Photo Upload</strong>
+        <small>JPG, PNG অথবা WEBP</small>
+      </div>
+      <label class="upload-button">
+        Choose Photo
+        <input type="file" id="photo" accept="image/jpeg,image/png,image/webp">
+      </label>
+    </div>
 
-            <div class="upload-row">
-                <div>
-                    <strong>ছবি আপলোড</strong>
-                    <small>JPG / PNG · সর্বোচ্চ ৩ MB</small>
-                </div>
+    <div class="photo-preview">
+      <img id="photoPreview" alt="Photo Preview" hidden>
+      <span id="photoPlaceholder">ছবির Preview এখানে দেখা যাবে</span>
+    </div>
 
-                <button type="button" class="upload-button" id="choosePhoto">
-                    ছবি নির্বাচন করুন
-                </button>
+    <div class="actions">
+      <button type="submit" class="primary">Generate Demo Card</button>
+      <button type="button" class="secondary" id="clearBtn">Clear Form</button>
+    </div>
 
-                <input
-                    type="file"
-                    id="photo"
-                    accept="image/jpeg,image/png"
-                    hidden
-                >
-            </div>
+  </form>
 
-            <!-- PHOTO PREVIEW -->
+  <p class="notice">
+    এটি ব্যক্তিগত ডিজাইন ডেমো। কোনো সরকারি পরিচয়পত্র বা বৈধ ড্রাইভিং লাইসেন্স নয়।
+  </p>
 
-            <div class="photo-preview">
-                <img id="photoPreview"
-                     class="hidden"
-                     alt="Photo Preview">
-
-                <p id="photoStatus">
-                    এখনো কোনো ছবি নির্বাচন করা হয়নি।
-                </p>
-            </div>
-
-            <div class="notice">
-                এটি সম্পূর্ণ ব্যক্তিগত ডিজাইন DEMO।
-                কোনো সরকারি ড্রাইভিং লাইসেন্স নয়।
-                পরিচয়, যাচাই অথবা গাড়ি চালানোর কাজে ব্যবহারযোগ্য নয়।
-            </div>
-
-            <div class="actions">
-
-                <button type="reset" class="secondary">
-                    Reset
-                </button>
-
-                <button type="submit" class="primary" id="generateBtn">
-                    Generate Demo Card →
-                </button>
-
-            </div>
-
-        </form>
-    </section>
+</section>
 </main>
 
 <footer>
-    DL Demo Studio · HTML · CSS · JavaScript
+  Built with HTML, CSS and JavaScript
 </footer>
 
-<script src="script.js"></script>
-
+<script src="js/form.js"></script>
 </body>
 </html>
