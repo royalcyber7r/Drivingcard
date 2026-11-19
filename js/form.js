@@ -53,6 +53,7 @@ form.addEventListener("submit", function (event) {
   const data = {
     name: document.getElementById("name").value.trim(),
     dob: document.getElementById("dob").value,
+    bloodGroup: document.getElementById("bloodGroup").value,
     guardian: document.getElementById("guardian").value.trim(),
     issue: document.getElementById("issue").value,
     expiry: document.getElementById("expiry").value,
@@ -62,6 +63,11 @@ form.addEventListener("submit", function (event) {
     vehicle: document.getElementById("vehicle").value,
     photo: uploadedPhoto
   };
+
+  if (!data.bloodGroup) {
+    alert("রক্তের গ্রুপ নির্বাচন করুন।");
+    return;
+  }
 
   if (new Date(data.expiry) <= new Date(data.issue)) {
     alert("মেয়াদ শেষের তারিখ ইস্যু তারিখের পরে হতে হবে।");
