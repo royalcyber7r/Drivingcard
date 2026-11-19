@@ -230,7 +230,7 @@ body {
   margin-top: 5px;
 }
 
-/* HEADER QR */
+/* TOP RIGHT LOGO AND QR */
 
 .header-logo-area {
   display: flex;
@@ -238,6 +238,14 @@ body {
   align-items: center;
   justify-content: center;
   flex: 0 0 75px;
+  gap: 5px;
+}
+
+.header-demo-logo {
+  display: block;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
 }
 
 #qrCode {
@@ -296,7 +304,7 @@ body {
 .details {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 9px;
   min-width: 0;
   position: relative;
   z-index: 2;
@@ -326,19 +334,42 @@ body {
 
 /* DATE AND BLOOD GROUP */
 
-.date-row {
-  display: grid;
-  grid-template-columns: 1fr 0.75fr;
-  gap: 15px;
+/* DOB and Blood Group are now separate vertical fields */
+
+.blood-group-field {
+  margin-top: -2px;
 }
 
-/* REFERENCE AND ISSUER */
+/* ISSUE, VALIDITY AND DEMO ISSUER SAME ROW */
+
+.validity-issuer-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.35fr;
+  gap: 12px;
+  align-items: start;
+  min-width: 0;
+}
+
+.validity-issuer-row .field {
+  min-width: 0;
+}
+
+.validity-issuer-row .field span {
+  font-size: 14px;
+}
+
+.validity-issuer-row .field strong {
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+/* REFERENCE */
 
 .reference-issuer-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 15px;
-  margin-top: 8px;
+  margin-top: 2px;
   min-width: 0;
 }
 
