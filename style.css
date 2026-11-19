@@ -1,0 +1,45 @@
+*{box-sizing:border-box}
+:root{--ink:#17233d;--maroon:#8d353b;--muted:#6b7280;--line:#d9dee8;--paper:#fff}
+body{margin:0;background:#f3f5f9;color:#172033;font-family:Roboto,"Noto Sans Bengali",sans-serif}
+.topbar{padding:28px max(22px,calc((100% - 1320px)/2));background:#17233d;color:#fff;display:flex;justify-content:space-between;align-items:center;gap:20px}
+h1{font-size:clamp(22px,3vw,32px);margin:4px 0}.subhead{margin:0;color:#cbd5e1;font-family:"Noto Sans Bengali",sans-serif}
+.eyebrow{font-size:10px;letter-spacing:1.8px;font-weight:700;color:#aab6ca;margin:0 0 6px}.header-tag{border:1px solid #c5d1e2;border-radius:20px;padding:8px 13px;font-size:11px;letter-spacing:1px;white-space:nowrap}
+.layout{max-width:1320px;margin:28px auto;padding:0 22px;display:grid;grid-template-columns:minmax(300px,390px) minmax(0,1fr);gap:24px;align-items:start}
+.panel,.preview-area{background:#fff;border:1px solid #e1e5ed;border-radius:16px;padding:22px;box-shadow:0 8px 30px #1d2c4610}
+.section-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}h2{font-size:20px;margin:0}.section-heading .eyebrow{color:#8792a5}
+.text-button{border:0;background:none;color:#8d353b;font-weight:700;cursor:pointer}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+label{font-size:12px;font-weight:700;color:#3d485b;display:flex;flex-direction:column;gap:6px}
+input:not([type=file]){width:100%;border:1px solid #dce1e9;border-radius:8px;padding:10px 11px;font:13px Roboto,"Noto Sans Bengali",sans-serif;color:#17233d;outline:none}
+input:focus{border-color:#667da5;box-shadow:0 0 0 3px #667da51a}.full{grid-column:1/-1}
+.upload-row{margin:18px 0;padding:14px 0;border-top:1px solid #edf0f4;border-bottom:1px solid #edf0f4;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.upload-row strong,.upload-row small{display:block}.upload-row strong{font-size:13px}.upload-row small{font-size:11px;color:#7b8493;margin-top:4px}
+.upload-button{background:#eef2f8;padding:9px 12px;border-radius:8px;cursor:pointer;white-space:nowrap}.upload-button input{display:none}
+.actions{display:flex;gap:10px}.actions button{flex:1;border:0;border-radius:9px;padding:12px 10px;font-weight:700;cursor:pointer}
+.primary{background:#17233d;color:#fff}.secondary{background:#edf1f7;color:#17233d}.notice{font-size:11px;line-height:1.65;color:#7b4b4b;background:#fff7f6;border:1px solid #f1d9d7;padding:10px;border-radius:8px;margin:15px 0 0}
+.side-switch{display:flex;background:#f0f2f6;padding:4px;border-radius:9px}.side-btn{border:0;padding:8px 16px;border-radius:7px;background:transparent;font-weight:700;color:#657084;cursor:pointer}.side-btn.active{background:#fff;color:#17233d;box-shadow:0 1px 5px #0001}
+.card-wrap{width:100%;overflow:auto;padding:4px 0 14px}
+.license-card{width:900px;max-width:100%;aspect-ratio:1.58/1;background:#fff;border:3px solid #282828;position:relative;overflow:hidden;padding:22px 24px;color:#17233d;isolation:isolate}
+.license-card:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 54% 55%,#f5d9dc 0 13%,transparent 13.5%),radial-gradient(ellipse at 54% 55%,transparent 0 32%,#e6e9e7 32.5% 34%,transparent 34.5%);opacity:.8;z-index:-2}
+.watermark{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%) rotate(-27deg);font-size:104px;font-weight:700;letter-spacing:8px;color:#9ca3af;opacity:.13;white-space:nowrap;z-index:-1;border:8px solid currentColor;padding:8px 18px}
+.card-top{display:flex;align-items:center;gap:14px;height:75px}
+.brand-mark{width:58px;height:58px;border:3px double #62766f;border-radius:50%;display:grid;place-content:center;text-align:center;font-weight:700;font-size:17px;color:#42645b;background:#f7faf8;line-height:1}.brand-mark small{font-size:8px}
+.card-title{display:flex;flex-direction:column;gap:4px;flex:1}.card-title strong{font-family:"Noto Sans Bengali",sans-serif;color:#28334a;font-size:21px}.card-title b{font-size:16px}.country-label{text-align:center;color:#477b69;font-size:12px;font-weight:700;line-height:1.5;border-left:1px solid #d8e0da;padding-left:18px}
+.front-content{display:grid;grid-template-columns:220px minmax(0,1fr) 130px;gap:18px;margin-top:16px;align-items:start}
+.photo-frame{height:255px;border:3px solid #252525;background:#e5e7eb;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.photo-frame img,.mini-photo img{width:100%;height:100%;object-fit:cover}.details{display:flex;flex-direction:column;gap:8px;min-width:0}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}.field span{font-family:"Noto Sans Bengali",sans-serif;color:var(--maroon);font-weight:700;font-size:13px}.field strong{font-size:15px;line-height:1.35;overflow-wrap:anywhere}
+.date-row,.ref-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tiny-note{font-size:8px;color:#666;margin:0;letter-spacing:.4px}.issuer{font-size:10px;color:#7b4144;font-weight:700;align-self:end;text-align:right}
+.fake-code{height:120px;border:5px solid #fff;outline:1px solid #d9d9d9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:#fff}
+.fake-code>span{font-size:10px;font-weight:700;color:#8d353b;text-align:center}.code-grid{width:88px;height:78px;background:repeating-conic-gradient(#84353b 0 25%,#fff 0 50%) 0 0/12px 12px;position:relative}
+.code-grid:after{content:"";position:absolute;inset:8px;border:5px solid #84353b;outline:4px solid white;opacity:.6}
+.card-bottom{position:absolute;bottom:7px;left:0;right:0;text-align:center;font-size:9px;letter-spacing:1.2px;color:#8d353b;font-weight:700}
+.back-card{padding:20px 25px}.back-warning{text-align:center;color:#8d353b;font-weight:700;font-size:14px;margin-bottom:12px}
+.back-top{display:grid;grid-template-columns:95px 1fr 58px;gap:18px;align-items:center}.mini-photo{height:105px;width:85px;border:2px solid #aaa;background:#eee;overflow:hidden}
+.decorative-barcode{height:75px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:3px;background:repeating-linear-gradient(90deg,#772f35 0 4px,transparent 4px 8px,#772f35 8px 10px,transparent 10px 16px);position:relative}
+.decorative-barcode span{font-size:9px;font-weight:700;background:#fff;color:#772f35;padding:3px 6px}
+.small-mark{width:52px;height:52px}.back-info{margin:14px 0 0 105px}.back-columns{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:20px}.back-lower{display:flex;align-items:center;justify-content:space-between;margin-top:20px;padding-left:8px}.back-code{width:115px;height:105px}.back-code .code-grid{width:70px;height:60px;background-size:10px 10px}.back-lower p{text-align:center;color:#4b5563;font-size:13px;line-height:1.7}.back-lower p b{color:#8d353b}.leaf-mark{font-size:45px;color:#b5a64b;margin-right:18px}.back-footer{position:absolute;bottom:7px;left:0;right:0;text-align:center;color:#8d353b;font-size:10px;font-weight:700;letter-spacing:1px}
+.hidden{display:none!important}.preview-hint{font-size:11px;color:#7b8493;margin:6px 0 0}footer{text-align:center;color:#8a93a2;font-size:11px;padding:0 20px 28px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.preview-area{min-width:0}.license-card{max-width:none}.card-wrap{overflow-x:auto}.preview-heading{align-items:flex-start}}
+@media(max-width:560px){.topbar{padding:22px;align-items:flex-start}.header-tag{font-size:9px}.layout{padding:0 12px;margin:14px auto}.panel,.preview-area{padding:16px}.form-grid{grid-template-columns:1fr}.full{grid-column:auto}.actions{flex-direction:column}.license-card{width:900px;max-width:none}.card-wrap{margin-right:-16px;padding-right:16px}.preview-heading{flex-direction:column}.back-info{margin-left:0}}
+@media print{body{background:#fff}.topbar,.form-panel,.preview-heading,.preview-hint,footer{display:none!important}.layout{display:block;margin:0;padding:0}.preview-area{border:0;box-shadow:none;padding:0}.card-wrap{overflow:visible}.license-card{display:block!important;max-width:none;width:900px;margin:0 auto 18px;break-after:page}.license-card:last-child{break-after:auto}.front-card,.back-card{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
