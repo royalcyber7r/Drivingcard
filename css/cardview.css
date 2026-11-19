@@ -97,45 +97,25 @@ body {
 /* CARD BASE */
 
 .license-card {
-  width: 1000px;
-  min-width: 1000px;
-  max-width: 1000px;
-  height: 650px;
   position: relative;
   overflow: hidden;
-  background: #fff;
-  border: 3px solid #292929;
-  padding: 26px 28px;
   isolation: isolate;
-  color: var(--ink);
+  background: #fff;
 }
-
-/* WATERMARK IMAGE */
 
 .watermark-image {
   position: absolute;
-
   width: 430px;
   height: 430px;
-
   max-width: none;
-
   left: 50%;
-  top: 53%;
-
+  top: 50%;
   transform: translate(-50%, -50%);
-
   object-fit: contain;
-
   opacity: 0.13;
-
   z-index: 0;
-
   pointer-events: none;
-  user-select: none;
 }
-
-/* Keep card content above watermark */
 
 .card-top,
 .front-content,
@@ -150,16 +130,6 @@ body {
   position: relative;
   z-index: 2;
 }
-
-/* HEADER AREA */
-
-.card-top {
-  height: 88px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
 /* BRAND LOGO */
 
 .brand-mark {
