@@ -6,18 +6,18 @@
 
 const rawData = sessionStorage.getItem("demoLicenseData");
 
+let data = {};
+
 if (!rawData) {
   alert("কোনো Demo তথ্য পাওয়া যায়নি। আবার ফরম পূরণ করুন।");
   window.location.replace("index.html");
-}
-
-let data = {};
-
-try {
-  data = JSON.parse(rawData);
-} catch (error) {
-  alert("তথ্য লোড করা যায়নি। আবার চেষ্টা করুন।");
-  window.location.replace("index.html");
+} else {
+  try {
+    data = JSON.parse(rawData);
+  } catch (error) {
+    alert("তথ্য লোড করা যায়নি। আবার চেষ্টা করুন।");
+    window.location.replace("index.html");
+  }
 }
 
 /* =====================================
@@ -65,6 +65,7 @@ function setText(id, value) {
 
 setText("cardName", data.name);
 setText("cardDob", formatDate(data.dob));
+setText("cardBloodGroup", data.bloodGroup);
 setText("cardGuardian", data.guardian);
 setText("cardIssue", formatDate(data.issue));
 setText("cardExpiry", formatDate(data.expiry));
@@ -77,9 +78,18 @@ setText("cardIssuer", data.issuer);
 
 setText("backAddress", data.address);
 setText("backClass", data.vehicle);
-setText("backIssue", formatDate(data.issue));
-setText("backReference", data.reference);
-setText("backIssuer", data.issuer);
+
+/*
+   Pre Ref No. আপাতত Demo Reference
+   থেকে দেখানো হচ্ছে।
+*/
+
+setText(
+  "backPreRefNo",
+  data.preRefNo || data.reference
+);
+
+setText("backIssueDate", formatDate(data.issue));
 
 /* =====================================
    PHOTO DISPLAY
@@ -87,9 +97,16 @@ setText("backIssuer", data.issuer);
 
 if (data.photo) {
 
-  document.getElementById("cardPhoto").src = data.photo;
+  const frontPhoto = document.getElementById("cardPhoto");
+  const backPhoto = document.getElementById("backPhoto");
 
-  document.getElementById("backPhoto").src = data.photo;
+  if (frontPhoto) {
+    frontPhoto.src = data.photo;
+  }
+
+  if (backPhoto) {
+    backPhoto.src = data.photo;
+  }
 
 }
 
@@ -97,9 +114,11 @@ if (data.photo) {
    QR CODE GENERATION
 ===================================== */
 
-function generateQRCode() {
+function generateDemoQR(containerId) {
 
-  const qrContainer = document.getElementById("qrCode");
+  const qrContainer = document.getElementById(containerId);
+
+  if (!qrContainer) return;
 
   qrContainer.innerHTML = "";
 
@@ -109,11 +128,10 @@ function generateQRCode() {
   }
 
   const demoQRData = [
-    "PERSONAL DESIGN DEMO",
+    "PERSONAL DEMO CARD",
     "NOT AN OFFICIAL DOCUMENT",
-    "Name: " + data.name,
-    "Reference: " + data.reference
-  ].join("\n");
+    "NOT VALID FOR IDENTIFICATION"
+  ].join(" | ");
 
   new QRCode(qrContainer, {
     text: demoQRData,
@@ -121,7 +139,7 @@ function generateQRCode() {
     height: 120,
     colorDark: "#17233d",
     colorLight: "#ffffff",
-    correctLevel: QRCode.CorrectLevel.M
+    correctLevel: QRCode.CorrectLevel.L
   });
 
 }
@@ -132,8 +150,12 @@ function generateQRCode() {
 
 function generateBarcode() {
 
+  const barcodeElement = document.getElementById("demoBarcode");
+
+  if (!barcodeElement) return;
+
   if (typeof JsBarcode === "undefined") {
-    document.getElementById("demoBarcode").outerHTML =
+    barcodeElement.outerHTML =
       '<span>Barcode unavailable</span>';
     return;
   }
@@ -168,6 +190,8 @@ function showSide(side) {
   const frontButton = document.getElementById("frontButton");
   const backButton = document.getElementById("backButton");
 
+  if (!front || !back) return;
+
   if (side === "front") {
 
     front.classList.remove("hidden");
@@ -199,7 +223,6 @@ function downloadPDF() {
 
   if (!front || !back) return;
 
-  // Both sides are displayed by the print CSS.
   window.print();
 
 }
@@ -220,34 +243,12 @@ function editInformation() {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  generateQRCode();
+  generateDemoQR("qrCode");
+
+  generateDemoQR("backQrCode");
+
   generateBarcode();
 
   showSide("front");
 
-function generateDemoQR() {
-  const qrElement = document.getElementById("qrCode");
-
-  if (!qrElement || typeof QRCode === "undefined") {
-    return;
-  }
-
-  qrElement.innerHTML = "";
-
-  const demoData = [
-    "PERSONAL DEMO CARD",
-    "NOT AN OFFICIAL DOCUMENT",
-    "NOT VALID FOR IDENTIFICATION"
-  ].join(" | ");
-
-  new QRCode(qrElement, {
-    text: demoData,
-    width: 61,
-    height: 61,
-    correctLevel: QRCode.CorrectLevel.L
-  });
-}
-
-document.addEventListener("DOMContentLoaded", generateDemoQR);
-   
 });
