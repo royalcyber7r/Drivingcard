@@ -1,254 +1,119 @@
-"use strict";
 
-/* =====================================
-   LOAD FORM DATA
-===================================== */
+document.addEventListener("DOMContentLoaded", function () {
 
-const rawData = sessionStorage.getItem("demoLicenseData");
+  const rawData = sessionStorage.getItem("demoLicenseData");
 
-let data = {};
+  if (!rawData) {
+    alert("ডেমো কার্ডের তথ্য পাওয়া যায়নি। আবার তথ্য পূরণ করুন।");
+    window.location.href = "index.html";
+    return;
+  }
 
-if (!rawData) {
-  alert("কোনো Demo তথ্য পাওয়া যায়নি। আবার ফরম পূরণ করুন।");
-  window.location.replace("index.html");
-} else {
+  let data;
+
   try {
     data = JSON.parse(rawData);
   } catch (error) {
-    alert("তথ্য লোড করা যায়নি। আবার চেষ্টা করুন।");
-    window.location.replace("index.html");
-  }
-}
-
-/* =====================================
-   DATE FORMAT
-===================================== */
-
-function formatDate(value) {
-
-  if (!value) return "—";
-
-  const date = new Date(value + "T00:00:00");
-
-  if (Number.isNaN(date.getTime())) return "—";
-
-  const months = [
-    "JAN", "FEB", "MAR", "APR",
-    "MAY", "JUN", "JUL", "AUG",
-    "SEP", "OCT", "NOV", "DEC"
-  ];
-
-  const day = String(date.getDate()).padStart(2, "0");
-
-  return day + "-" +
-    months[date.getMonth()] + "-" +
-    date.getFullYear();
-}
-
-/* =====================================
-   SAFE TEXT DISPLAY
-===================================== */
-
-function setText(id, value) {
-
-  const element = document.getElementById(id);
-
-  if (element) {
-    element.textContent = value || "—";
+    alert("তথ্য পড়তে সমস্যা হয়েছে। আবার তথ্য পূরণ করুন।");
+    window.location.href = "index.html";
+    return;
   }
 
-}
+  function setText(id, value) {
+    const element = document.getElementById(id);
 
-/* =====================================
-   FRONT CARD INFORMATION
-===================================== */
+    if (element) {
+      element.textContent = value || "—";
+    }
+  }
 
-setText("cardName", data.name);
-setText("cardDob", formatDate(data.dob));
-setText("cardBloodGroup", data.bloodGroup);
-setText("cardGuardian", data.guardian);
-setText("cardIssue", formatDate(data.issue));
-setText("cardExpiry", formatDate(data.expiry));
-setText("cardReference", data.reference);
-setText("cardIssuer", data.issuer);
+  function formatDate(value) {
+    if (!value) return "—";
 
-/* =====================================
-   BACK CARD INFORMATION
-===================================== */
+    const date = new Date(value + "T00:00:00");
 
-setText("backAddress", data.address);
-setText("backClass", data.vehicle);
+    if (isNaN(date.getTime())) {
+      return value;
+    }
 
-/*
-   Pre Ref No. আপাতত Demo Reference
-   থেকে দেখানো হচ্ছে।
-*/
+    const months = [
+      "JAN", "FEB", "MAR", "APR",
+      "MAY", "JUN", "JUL", "AUG",
+      "SEP", "OCT", "NOV", "DEC"
+    ];
 
-setText(
-  "backPreRefNo",
-  data.preRefNo || data.reference
-);
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
 
-setText("backIssueDate", formatDate(data.issue));
+    return `${day}-${month}-${year}`;
+  }
 
-/* =====================================
-   PHOTO DISPLAY
-===================================== */
+  /* FRONT INFORMATION */
 
-if (data.photo) {
+  setText("cardName", data.name);
+  setText("cardDob", formatDate(data.dob));
+  setText("cardBloodGroup", data.bloodGroup);
+  setText("cardGuardian", data.guardian);
+  setText("cardIssue", formatDate(data.issue));
+  setText("cardExpiry", formatDate(data.expiry));
+  setText("cardReference", data.reference);
+  setText("cardIssuer", data.issuer);
+
+  /* BACK INFORMATION */
+
+  setText("backAddress", data.address);
+  setText("backClass", data.vehicle);
+  setText("backPreRefNo", data.preRefNo || data.reference);
+  setText("backIssueDate", formatDate(data.issue));
+
+  /* PHOTO */
 
   const frontPhoto = document.getElementById("cardPhoto");
   const backPhoto = document.getElementById("backPhoto");
 
-  if (frontPhoto) {
+  if (data.photo) {
     frontPhoto.src = data.photo;
-  }
-
-  if (backPhoto) {
     backPhoto.src = data.photo;
   }
 
-}
+  /* DEMO QR */
 
-/* =====================================
-   QR CODE GENERATION
-===================================== */
+  function generateDemoQR(containerId, text) {
+    const container = document.getElementById(containerId);
 
-function generateDemoQR(containerId) {
+    if (!container || typeof QRCode === "undefined") {
+      return;
+    }
 
-  const qrContainer = document.getElementById(containerId);
+    container.innerHTML = "";
 
-  if (!qrContainer) return;
-
-  qrContainer.innerHTML = "";
-
-  if (typeof QRCode === "undefined") {
-    qrContainer.textContent = "QR unavailable";
-    return;
+    new QRCode(container, {
+      text: text,
+      width: 120,
+      height: 120,
+      colorDark: "#17233d",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.M
+    });
   }
 
-  const demoQRData = [
-    "PERSONAL DEMO CARD",
-    "NOT AN OFFICIAL DOCUMENT",
-    "NOT VALID FOR IDENTIFICATION"
-  ].join(" | ");
+  const demoQRText =
+    "PERSONAL DEMO CARD | NOT VALID | NOT A GOVERNMENT DOCUMENT";
 
-  new QRCode(qrContainer, {
-    text: demoQRData,
-    width: 120,
-    height: 120,
-    colorDark: "#17233d",
-    colorLight: "#ffffff",
-    correctLevel: QRCode.CorrectLevel.L
-  });
-
-}
-
-/* =====================================
-   DEMO BARCODE GENERATION
-===================================== */
-
-function generateBarcode() {
-
-  const barcodeElement = document.getElementById("demoBarcode");
-
-  if (!barcodeElement) return;
-
-  if (typeof JsBarcode === "undefined") {
-    barcodeElement.outerHTML =
-      '<span>Barcode unavailable</span>';
-    return;
-  }
-
-  const barcodeValue = "DEMO-" +
-    String(data.reference || "000000")
-      .replace(/[^a-zA-Z0-9-]/g, "")
-      .slice(0, 25);
-
-  JsBarcode("#demoBarcode", barcodeValue, {
-    format: "CODE128",
-    lineColor: "#8d353b",
-    background: "#ffffff",
-    width: 2,
-    height: 55,
-    displayValue: true,
-    fontSize: 12,
-    margin: 5
-  });
-
-}
-
-/* =====================================
-   FRONT / BACK SWITCH
-===================================== */
-
-function showSide(side) {
-
-  const front = document.getElementById("frontCard");
-  const back = document.getElementById("backCard");
-
-  const frontButton = document.getElementById("frontButton");
-  const backButton = document.getElementById("backButton");
-
-  if (!front || !back) return;
-
-  if (side === "front") {
-
-    front.classList.remove("hidden");
-    back.classList.add("hidden");
-
-    frontButton.classList.add("active");
-    backButton.classList.remove("active");
-
-  } else {
-
-    front.classList.add("hidden");
-    back.classList.remove("hidden");
-
-    frontButton.classList.remove("active");
-    backButton.classList.add("active");
-
-  }
-
-}
-
-/* =====================================
-   PDF / PRINT
-===================================== */
-
-function downloadPDF() {
-
-  const front = document.getElementById("frontCard");
-  const back = document.getElementById("backCard");
-
-  if (!front || !back) return;
-
-  window.print();
-
-}
-
-/* =====================================
-   EDIT INFORMATION
-===================================== */
-
-function editInformation() {
-
-  window.location.href = "index.html";
-
-}
-
-/* =====================================
-   INITIALIZE
-===================================== */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  generateDemoQR("qrCode");
-
-  generateDemoQR("backQrCode");
-
-  generateBarcode();
-
-  showSide("front");
+  generateDemoQR("qrCode", demoQRText);
+  generateDemoQR("backQrCode", demoQRText);
 
 });
+
+/* PRINT / SAVE PDF */
+
+function downloadPDF() {
+  window.print();
+}
+
+/* EDIT INFORMATION */
+
+function editInformation() {
+  window.location.href = "index.html";
+}
