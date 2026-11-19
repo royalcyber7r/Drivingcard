@@ -225,4 +225,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
   showSide("front");
 
+function generateDemoQR() {
+  const qrElement = document.getElementById("qrCode");
+
+  if (!qrElement || typeof QRCode === "undefined") {
+    return;
+  }
+
+  qrElement.innerHTML = "";
+
+  const demoData = [
+    "PERSONAL DEMO CARD",
+    "NOT AN OFFICIAL DOCUMENT",
+    "NOT VALID FOR IDENTIFICATION"
+  ].join(" | ");
+
+  new QRCode(qrElement, {
+    text: demoData,
+    width: 61,
+    height: 61,
+    correctLevel: QRCode.CorrectLevel.L
+  });
+}
+
+document.addEventListener("DOMContentLoaded", generateDemoQR);
+   
 });
