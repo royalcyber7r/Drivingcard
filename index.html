@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DL Demo - Information Form</title>
+    <title>DL Demo Studio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,18 +13,17 @@
     <div>
         <div class="eyebrow">PERSONAL DESIGN PROJECT</div>
         <h1>DL Demo Studio</h1>
-        <p>নমুনা লাইসেন্স কার্ড ডিজাইন</p>
+        <p>নমুনা কার্ড ডিজাইন</p>
     </div>
     <span class="header-tag">DEMO ONLY</span>
 </header>
 
 <main class="layout">
     <section class="panel">
+
         <div class="section-heading">
-            <div>
-                <div class="eyebrow">CARD INFORMATION</div>
-                <h2>ব্যক্তিগত তথ্য পূরণ করুন</h2>
-            </div>
+            <div class="eyebrow">CARD INFORMATION</div>
+            <h2>ব্যক্তিগত তথ্য পূরণ করুন</h2>
         </div>
 
         <form id="licenseForm">
@@ -34,7 +33,7 @@
                 <label class="full">
                     নাম / Name
                     <input type="text" id="name" required
-                           placeholder="আপনার নাম লিখুন">
+                           placeholder="নাম লিখুন">
                 </label>
 
                 <label>
@@ -61,7 +60,7 @@
                 <label>
                     রেফারেন্স নং / Demo Reference
                     <input type="text" id="reference" required
-                           placeholder="যেমন: DEMO-000001">
+                           placeholder="DEMO-000001">
                 </label>
 
                 <label>
@@ -79,43 +78,59 @@
                 <label class="full">
                     লাইসেন্স ক্লাস / Vehicle Class
                     <input type="text" id="vehicleClass" required
-                           placeholder="যেমন: LIGHT VEHICLE, MOTORCYCLE">
+                           placeholder="LIGHT VEHICLE, MOTORCYCLE">
                 </label>
 
             </div>
+
+            <!-- PHOTO UPLOAD -->
 
             <div class="upload-row">
                 <div>
                     <strong>ছবি আপলোড</strong>
-                    <small>JPG / PNG ছবি নির্বাচন করুন</small>
+                    <small>JPG / PNG · সর্বোচ্চ ৩ MB</small>
                 </div>
 
-                <label class="upload-button">
-                    ছবি নির্বাচন
-                    <input type="file" id="photo"
-                           accept="image/png,image/jpeg" required>
-                </label>
+                <button type="button" class="upload-button" id="choosePhoto">
+                    ছবি নির্বাচন করুন
+                </button>
+
+                <input
+                    type="file"
+                    id="photo"
+                    accept="image/jpeg,image/png"
+                    hidden
+                >
             </div>
 
+            <!-- PHOTO PREVIEW -->
+
             <div class="photo-preview">
-                <img id="photoPreview" alt="Photo Preview"
-                     class="hidden">
+                <img id="photoPreview"
+                     class="hidden"
+                     alt="Photo Preview">
+
+                <p id="photoStatus">
+                    এখনো কোনো ছবি নির্বাচন করা হয়নি।
+                </p>
             </div>
 
             <div class="notice">
-                এটি শুধুমাত্র ব্যক্তিগত ডিজাইন ও শিক্ষামূলক DEMO।
-                এটি কোনো সরকারি ড্রাইভিং লাইসেন্স নয় এবং
-                পরিচয় বা গাড়ি চালানোর কাজে ব্যবহারযোগ্য নয়।
+                এটি সম্পূর্ণ ব্যক্তিগত ডিজাইন DEMO।
+                কোনো সরকারি ড্রাইভিং লাইসেন্স নয়।
+                পরিচয়, যাচাই অথবা গাড়ি চালানোর কাজে ব্যবহারযোগ্য নয়।
             </div>
 
             <div class="actions">
+
                 <button type="reset" class="secondary">
                     Reset
                 </button>
 
-                <button type="submit" class="primary">
+                <button type="submit" class="primary" id="generateBtn">
                     Generate Demo Card →
                 </button>
+
             </div>
 
         </form>
@@ -127,5 +142,6 @@
 </footer>
 
 <script src="script.js"></script>
+
 </body>
 </html>
