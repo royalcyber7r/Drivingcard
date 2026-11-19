@@ -1,60 +1,188 @@
-
 document.addEventListener("DOMContentLoaded", function () {
 
-    const form = document.getElementById("licenseForm");
-
-    /* =================================
+    /* =====================================
        FORM PAGE
-    ================================= */
+    ===================================== */
+
+    const form = document.getElementById("licenseForm");
 
     if (form) {
 
         const photoInput = document.getElementById("photo");
+        const choosePhoto = document.getElementById("choosePhoto");
         const photoPreview = document.getElementById("photoPreview");
+        const photoStatus = document.getElementById("photoStatus");
+        const generateBtn = document.getElementById("generateBtn");
 
         let selectedPhoto = "";
 
-        // Photo Preview
-        photoInput.addEventListener("change", function () {
+
+        /* OPEN PHOTO PICKER */
+
+        choosePhoto.addEventListener("click", function () {
+            photoInput.click();
+        });
+
+
+        /* IMAGE COMPRESSION */
+
+        function compressImage(file) {
+
+            return new Promise((resolve, reject) => {
+
+                const allowedTypes = [
+                    "image/jpeg",
+                    "image/png"
+                ];
+
+                if (!allowedTypes.includes(file.type)) {
+                    reject("শুধু JPG অথবা PNG ছবি নির্বাচন করুন।");
+                    return;
+                }
+
+                if (file.size > 3 * 1024 * 1024) {
+                    reject("ছবির সাইজ সর্বোচ্চ ৩ MB হতে পারবে।");
+                    return;
+                }
+
+                const reader = new FileReader();
+
+                reader.onerror = function () {
+                    reject("ছবি পড়া সম্ভব হয়নি। আবার চেষ্টা করুন।");
+                };
+
+                reader.onload = function (event) {
+
+                    const image = new Image();
+
+                    image.onerror = function () {
+                        reject("ছবিটি সঠিক নয় অথবা খোলা যাচ্ছে না।");
+                    };
+
+                    image.onload = function () {
+
+                        const maxWidth = 800;
+                        const maxHeight = 1000;
+
+                        let width = image.width;
+                        let height = image.height;
+
+                        const scale = Math.min(
+                            1,
+                            maxWidth / width,
+                            maxHeight / height
+                        );
+
+                        width = Math.round(width * scale);
+                        height = Math.round(height * scale);
+
+                        const canvas = document.createElement("canvas");
+
+                        canvas.width = width;
+                        canvas.height = height;
+
+                        const context = canvas.getContext("2d");
+
+                        if (!context) {
+                            reject("ছবি প্রসেস করা সম্ভব হয়নি।");
+                            return;
+                        }
+
+                        context.fillStyle = "#ffffff";
+
+                        context.fillRect(0, 0, width, height);
+
+                        context.drawImage(
+                            image,
+                            0,
+                            0,
+                            width,
+                            height
+                        );
+
+                        const compressedImage = canvas.toDataURL(
+                            "image/jpeg",
+                            0.65
+                        );
+
+                        resolve(compressedImage);
+
+                    };
+
+                    image.src = event.target.result;
+
+                };
+
+                reader.readAsDataURL(file);
+
+            });
+
+        }
+
+
+        /* PHOTO SELECTION */
+
+        photoInput.addEventListener("change", async function () {
 
             const file = this.files[0];
 
             if (!file) return;
 
-            if (!["image/jpeg", "image/png"].includes(file.type)) {
-                alert("শুধু JPG অথবা PNG ছবি নির্বাচন করুন।");
-                this.value = "";
-                return;
-            }
+            selectedPhoto = "";
 
-            if (file.size > 3 * 1024 * 1024) {
-                alert("ছবির সাইজ সর্বোচ্চ ৩ MB হতে পারবে।");
-                this.value = "";
-                return;
-            }
+            photoPreview.classList.add("hidden");
 
-            const reader = new FileReader();
+            photoStatus.textContent = "ছবি প্রস্তুত হচ্ছে...";
 
-            reader.onload = function (event) {
+            choosePhoto.disabled = true;
 
-                selectedPhoto = event.target.result;
+            try {
 
-                photoPreview.src = selectedPhoto;
+                const compressedImage = await compressImage(file);
+
+                selectedPhoto = compressedImage;
+
+                photoPreview.src = compressedImage;
+
                 photoPreview.classList.remove("hidden");
-            };
 
-            reader.readAsDataURL(file);
+                photoStatus.textContent =
+                    "✓ ছবি সফলভাবে আপলোড হয়েছে।";
+
+            } catch (error) {
+
+                selectedPhoto = "";
+
+                photoPreview.src = "";
+
+                photoPreview.classList.add("hidden");
+
+                photoStatus.textContent =
+                    "ছবি আপলোড করা যায়নি।";
+
+                alert(error);
+
+                photoInput.value = "";
+
+            } finally {
+
+                choosePhoto.disabled = false;
+
+            }
 
         });
 
 
-        // Form Submit
+        /* FORM SUBMIT */
+
         form.addEventListener("submit", function (event) {
 
             event.preventDefault();
 
             if (!selectedPhoto) {
-                alert("প্রথমে ছবি আপলোড করুন।");
+
+                alert("প্রথমে ছবি নির্বাচন করুন।");
+
                 return;
             }
 
@@ -83,11 +211,17 @@ document.addEventListener("DOMContentLoaded", function () {
             };
 
 
-            // Basic Validation
+            /* DATE VALIDATION */
+
             if (new Date(data.expiryDate) <= new Date(data.issueDate)) {
+
                 alert("মেয়াদ শেষের তারিখ ইস্যু তারিখের পরে হতে হবে।");
+
                 return;
             }
+
+
+            /* SAVE DATA */
 
             try {
 
@@ -96,33 +230,50 @@ document.addEventListener("DOMContentLoaded", function () {
                     JSON.stringify(data)
                 );
 
+                generateBtn.disabled = true;
+
+                generateBtn.textContent = "Generating...";
+
                 window.location.href = "cardview.html";
 
             } catch (error) {
 
-                alert("তথ্য সংরক্ষণ করা যায়নি। ছোট সাইজের ছবি ব্যবহার করুন।");
+                alert(
+                    "তথ্য সংরক্ষণ করা যায়নি। আরও ছোট ছবি ব্যবহার করে চেষ্টা করুন।"
+                );
+
+                generateBtn.disabled = false;
+
+                generateBtn.textContent = "Generate Demo Card →";
 
             }
 
         });
 
 
-        // Reset Preview
+        /* FORM RESET */
+
         form.addEventListener("reset", function () {
 
             selectedPhoto = "";
 
+            photoInput.value = "";
+
             photoPreview.src = "";
+
             photoPreview.classList.add("hidden");
+
+            photoStatus.textContent =
+                "এখনো কোনো ছবি নির্বাচন করা হয়নি।";
 
         });
 
     }
 
 
-    /* =================================
+    /* =====================================
        CARD VIEW PAGE
-    ================================= */
+    ===================================== */
 
     if (document.getElementById("cardName")) {
 
@@ -132,18 +283,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
             alert("কোনো Demo তথ্য পাওয়া যায়নি।");
 
-            window.location.href = "index.html";
+            window.location.replace("index.html");
 
             return;
         }
 
-        const data = JSON.parse(storedData);
+        let data;
+
+        try {
+
+            data = JSON.parse(storedData);
+
+        } catch (error) {
+
+            alert("তথ্য পড়তে সমস্যা হয়েছে।");
+
+            window.location.replace("index.html");
+
+            return;
+        }
 
 
-        // Date Format
+        /* DATE FORMAT */
+
         function formatDate(value) {
 
-            if (!value) return "";
+            if (!value) return "—";
 
             const date = new Date(value + "T00:00:00");
 
@@ -157,27 +322,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const day = String(date.getDate()).padStart(2, "0");
 
-            const month = months[date.getMonth()];
+            return (
+                day + "-" +
+                months[date.getMonth()] + "-" +
+                date.getFullYear()
+            );
 
-            const year = date.getFullYear();
-
-            return `${day}-${month}-${year}`;
         }
 
 
-        // Set Text
+        /* SET TEXT */
+
         function setText(id, value) {
 
             const element = document.getElementById(id);
 
             if (element) {
+
                 element.textContent = value || "—";
+
             }
 
         }
 
 
-        /* FRONT INFORMATION */
+        /* FRONT DATA */
 
         setText("cardName", data.name);
 
@@ -194,112 +363,120 @@ document.addEventListener("DOMContentLoaded", function () {
         setText("cardIssuer", data.issuer);
 
 
-        /* BACK INFORMATION */
+        /* BACK DATA */
 
         setText("backAddress", data.address);
 
         setText("backClass", data.vehicleClass);
 
+        setText("backIssue", formatDate(data.issueDate));
+
         setText("backReference", data.reference);
 
         setText("backIssuer", data.issuer);
 
-        setText("backIssue", formatDate(data.issueDate));
-
 
         /* PHOTO */
 
-        const cardPhoto = document.getElementById("cardPhoto");
+        if (data.photo) {
 
-        const backPhoto = document.getElementById("backPhoto");
+            const cardPhoto = document.getElementById("cardPhoto");
 
-        if (cardPhoto) {
-            cardPhoto.src = data.photo;
+            const backPhoto = document.getElementById("backPhoto");
+
+            if (cardPhoto) {
+                cardPhoto.src = data.photo;
+            }
+
+            if (backPhoto) {
+                backPhoto.src = data.photo;
+            }
+
         }
 
-        if (backPhoto) {
-            backPhoto.src = data.photo;
-        }
 
-
-        /* =================================
-           DEMO QR CODE
-        ================================= */
+        /* QR GENERATOR */
 
         const qrContainer = document.getElementById("qrCode");
 
-        if (qrContainer && typeof QRCode !== "undefined") {
+        if (qrContainer) {
 
-            const demoQRData = {
+            qrContainer.innerHTML = "";
 
-                type: "PERSONAL DEMO ONLY",
+            if (typeof QRCode !== "undefined") {
 
-                name: data.name,
+                const demoQRData = {
 
-                reference: data.reference,
+                    type: "PERSONAL DEMO",
 
-                issuer: data.issuer,
+                    name: data.name,
 
-                notice: "NOT AN OFFICIAL DOCUMENT"
+                    reference: data.reference,
 
-            };
+                    issuer: data.issuer,
 
-            new QRCode(qrContainer, {
+                    notice: "NOT AN OFFICIAL DOCUMENT"
 
-                text: JSON.stringify(demoQRData),
+                };
 
-                width: 150,
+                new QRCode(qrContainer, {
 
-                height: 150,
+                    text: JSON.stringify(demoQRData),
 
-                colorDark: "#26334b",
+                    width: 150,
 
-                colorLight: "#ffffff",
+                    height: 150,
 
-                correctLevel: QRCode.CorrectLevel.M
+                    colorDark: "#26334b",
 
-            });
+                    colorLight: "#ffffff",
 
-        } else if (qrContainer) {
+                    correctLevel: QRCode.CorrectLevel.M
 
-            qrContainer.textContent = "DEMO QR";
+                });
+
+            } else {
+
+                qrContainer.textContent = "QR LIBRARY UNAVAILABLE";
+
+            }
 
         }
 
 
-        /* =================================
-           DEMO BARCODE
-        ================================= */
+        /* BARCODE GENERATOR */
 
         const barcode = document.getElementById("demoBarcode");
 
-        if (barcode && typeof JsBarcode !== "undefined") {
+        if (barcode) {
 
-            // Only generate a non-official demo identifier.
-            const demoCode = (
-                "DEMO" +
-                String(data.reference)
+            if (typeof JsBarcode !== "undefined") {
+
+                const safeReference = String(data.reference)
                     .replace(/[^a-zA-Z0-9]/g, "")
-                    .substring(0, 25)
-            ).substring(0, 30);
+                    .substring(0, 20);
 
-            JsBarcode(barcode, demoCode, {
+                const demoCode = "DEMO" + safeReference;
 
-                format: "CODE128",
+                JsBarcode(barcode, demoCode, {
 
-                width: 1.5,
+                    format: "CODE128",
 
-                height: 55,
+                    width: 1.5,
 
-                displayValue: false,
+                    height: 55,
 
-                lineColor: "#8d353b",
+                    displayValue: false,
 
-                background: "#ffffff",
+                    lineColor: "#8d353b",
 
-                margin: 3
+                    background: "#ffffff",
 
-            });
+                    margin: 3
+
+                });
+
+            }
 
         }
 
