@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DL Demo - Card Preview</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Demo QR Generator -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- Demo Barcode Generator -->
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+</head>
+<body>
+
+<header class="topbar no-print">
+    <div>
+        <div class="eyebrow">PERSONAL DESIGN PROJECT</div>
+        <h1>DL Demo Studio</h1>
+        <p>নমুনা কার্ড Preview</p>
+    </div>
+    <span class="header-tag">DEMO ONLY</span>
+</header>
+
+<main class="preview-container">
+
+    <div class="preview-heading no-print">
+        <div>
+            <h2>Generated Demo Card</h2>
+            <p>Front এবং Back Preview</p>
+        </div>
+
+        <div class="preview-actions">
+            <button class="secondary" onclick="history.back()">
+                ← Back
+            </button>
+
+            <button class="primary" onclick="window.print()">
+                Save A4 PDF
+            </button>
+        </div>
+    </div>
+
+    <!-- FRONT CARD -->
+
+    <section class="demo-card front-card">
+
+        <div class="demo-watermark">SAMPLE</div>
+
+        <div class="card-header">
+            <div class="demo-logo">
+                <strong>DL</strong>
+                <small>DEMO</small>
+            </div>
+
+            <div class="card-heading">
+                <h2>নমুনা ড্রাইভিং লাইসেন্স</h2>
+                <strong>PERSONAL E-DRIVING CARD</strong>
+            </div>
+
+            <div class="demo-country">
+                PERSONAL<br>DEMO CARD
+            </div>
+        </div>
+
+        <div class="front-layout">
+
+            <div class="person-photo">
+                <img id="cardPhoto" alt="Demo Photo">
+            </div>
+
+            <div class="card-details">
+
+                <div class="card-field">
+                    <span>নাম / Name</span>
+                    <strong id="cardName"></strong>
+                </div>
+
+                <div class="card-field">
+                    <span>জন্ম তারিখ / Date of Birth</span>
+                    <strong id="cardDob"></strong>
+                </div>
+
+                <div class="card-field">
+                    <span>পিতা / স্বামী / Guardian</span>
+                    <strong id="cardGuardian"></strong>
+                </div>
+
+                <div class="card-field">
+                    <span>ইস্যু তারিখ / Issue Date</span>
+                    <strong id="cardIssue"></strong>
+                </div>
+
+                <div class="card-field">
+                    <span>মেয়াদ শেষ / Expiry Date</span>
+                    <strong id="cardExpiry"></strong>
+                </div>
+
+                <div class="card-field">
+                    <span>রেফারেন্স নং / Demo Ref.</span>
+                    <strong id="cardReference"></strong>
+                </div>
+
+                <div class="card-field">
+                    <span>প্রদানকারী প্রতিষ্ঠান / Demo Issuer</span>
+                    <strong id="cardIssuer"></strong>
+                </div>
+
+            </div>
+
+            <div class="qr-section">
+                <div class="demo-label">NON-FUNCTIONAL<br>DEMO ID</div>
+                <div id="qrCode"></div>
+                <small>DEMO DATA ONLY</small>
+            </div>
+
+        </div>
+
+        <div class="card-disclaimer">
+            PERSONAL DESIGN PREVIEW ONLY — NOT VALID FOR IDENTIFICATION OR DRIVING
+        </div>
+
+        <div class="card-footer">
+            PERSONAL DEMO CARD · NOT AN OFFICIAL DOCUMENT
+        </div>
+
+    </section>
+
+    <!-- BACK CARD -->
+
+    <section class="demo-card back-card">
+
+        <div class="demo-watermark">SAMPLE</div>
+
+        <div class="back-warning">
+            THIS IS A PERSONAL DESIGN SAMPLE — NOT AN OFFICIAL DOCUMENT
+        </div>
+
+        <div class="back-top">
+            <div class="mini-photo">
+                <img id="backPhoto" alt="Demo Photo">
+            </div>
+
+            <div class="barcode-section">
+                <svg id="demoBarcode"></svg>
+                <div class="barcode-caption">
+                    NON-FUNCTIONAL DEMO BARCODE
+                </div>
+            </div>
+
+            <div class="demo-logo small-logo">
+                <strong>DL</strong>
+                <small>DEMO</small>
+            </div>
+        </div>
+
+        <div class="back-info">
+
+            <div class="card-field">
+                <span>ঠিকানা / Address</span>
+                <strong id="backAddress"></strong>
+            </div>
+
+            <div class="back-columns">
+
+                <div class="card-field">
+                    <span>লাইসেন্স ক্লাস / Vehicle Class</span>
+                    <strong id="backClass"></strong>
+                </div>
+
+                <div class="card-field">
+                    <span>নমুনা রেফারেন্স / Demo Ref.</span>
+                    <strong id="backReference"></strong>
+                </div>
+
+                <div class="card-field">
+                    <span>প্রদানকারী প্রতিষ্ঠান / Demo Issuer</span>
+                    <strong id="backIssuer"></strong>
+                </div>
+
+                <div class="card-field">
+                    <span>প্রথম ইস্যু / First Issue</span>
+                    <strong id="backIssue"></strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="back-message">
+            For personal design demonstration only.<br>
+            No government verification service is connected.<br>
+            <strong>NOT A GOVERNMENT DOCUMENT</strong>
+        </div>
+
+        <div class="back-footer">
+            DL DEMO STUDIO · PERSONAL SAMPLE CARD
+        </div>
+
+    </section>
+
+    <div class="preview-hint no-print">
+        মোবাইলে কার্ড দেখতে প্রয়োজনে স্ক্রল করুন।
+        PDF করতে Save A4 PDF বাটনে চাপ দিন।
+    </div>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
