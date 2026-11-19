@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Roboto:wght@400;500;600;700;800&display=swap');
 
 * {
@@ -9,8 +8,6 @@
     --ink: #17233d;
     --maroon: #8d353b;
     --muted: #6b7280;
-    --line: #d9dee8;
-    --paper: #fff;
 }
 
 body {
@@ -20,8 +17,7 @@ body {
     font-family: Roboto, "Noto Sans Bengali", sans-serif;
 }
 
-button,
-input {
+button, input {
     font-family: inherit;
 }
 
@@ -39,7 +35,7 @@ input {
 
 .topbar h1 {
     font-size: 26px;
-    margin: 4px 0;
+    margin: 5px 0;
 }
 
 .topbar p {
@@ -64,7 +60,7 @@ input {
     white-space: nowrap;
 }
 
-/* FORM LAYOUT */
+/* FORM */
 
 .layout {
     max-width: 850px;
@@ -73,7 +69,7 @@ input {
 }
 
 .panel {
-    background: white;
+    background: #fff;
     padding: 26px;
     border-radius: 16px;
     border: 1px solid #e1e5ed;
@@ -117,7 +113,7 @@ input:not([type=file]) {
     outline: none;
     font-size: 14px;
     color: var(--ink);
-    background: #fff;
+    background: white;
 }
 
 input:focus {
@@ -154,28 +150,41 @@ input:focus {
 }
 
 .upload-button {
-    padding: 11px 15px;
-    background: #edf1f7;
-    color: #17233d;
+    border: 0;
+    background: #17233d;
+    color: white;
+    padding: 11px 16px;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 13px;
+    font-weight: 700;
 }
 
-.upload-button input {
-    display: none;
+.upload-button:disabled {
+    opacity: .5;
+    cursor: wait;
 }
 
 .photo-preview {
-    margin-top: 10px;
+    margin: 12px 0;
 }
 
 .photo-preview img {
-    width: 100px;
-    height: 115px;
+    width: 110px;
+    height: 130px;
     object-fit: cover;
     border: 2px solid #d9dee8;
-    border-radius: 7px;
+    border-radius: 6px;
+}
+
+#photoStatus {
+    color: #6b7280;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.hidden {
+    display: none !important;
 }
 
 /* BUTTONS */
@@ -188,7 +197,7 @@ input:focus {
 
 .actions button,
 .preview-actions button {
-    border: none;
+    border: 0;
     border-radius: 8px;
     padding: 13px 18px;
     font-size: 13px;
@@ -233,7 +242,7 @@ footer {
     padding: 20px;
 }
 
-/* PREVIEW PAGE */
+/* PREVIEW */
 
 .preview-container {
     max-width: 1100px;
@@ -265,7 +274,7 @@ footer {
     gap: 9px;
 }
 
-/* DEMO CARD BASE */
+/* DEMO CARD */
 
 .demo-card {
     width: 100%;
@@ -279,8 +288,6 @@ footer {
     padding: 25px 28px;
     isolation: isolate;
 }
-
-/* LARGE DEMO WATERMARK */
 
 .demo-watermark {
     position: absolute;
@@ -306,8 +313,6 @@ footer {
     display: flex;
     align-items: center;
     gap: 16px;
-    position: relative;
-    z-index: 1;
 }
 
 .demo-logo {
@@ -357,15 +362,13 @@ footer {
     line-height: 1.6;
 }
 
-/* FRONT CONTENT */
+/* FRONT */
 
 .front-layout {
     display: grid;
     grid-template-columns: 215px minmax(0, 1fr) 120px;
     gap: 18px;
     margin-top: 16px;
-    position: relative;
-    z-index: 1;
 }
 
 .person-photo {
@@ -412,7 +415,13 @@ footer {
     overflow-wrap: anywhere;
 }
 
-/* QR DEMO */
+.date-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+/* QR */
 
 .qr-section {
     display: flex;
@@ -452,7 +461,7 @@ footer {
     font-weight: 700;
 }
 
-/* DISCLAIMER */
+/* CARD FOOTER */
 
 .card-disclaimer {
     position: absolute;
@@ -463,7 +472,6 @@ footer {
     font-size: 9px;
     text-align: center;
     letter-spacing: .3px;
-    z-index: 1;
 }
 
 .card-footer,
@@ -477,18 +485,15 @@ footer {
     font-size: 9px;
     font-weight: 800;
     letter-spacing: 1px;
-    z-index: 1;
 }
 
-/* BACK CARD */
+/* BACK */
 
 .back-card {
     padding: 22px 28px;
 }
 
 .back-warning {
-    position: relative;
-    z-index: 1;
     color: #963d40;
     font-size: 14px;
     text-align: center;
@@ -501,8 +506,6 @@ footer {
     grid-template-columns: 95px minmax(0, 1fr) 65px;
     align-items: center;
     gap: 20px;
-    position: relative;
-    z-index: 1;
 }
 
 .mini-photo {
@@ -536,8 +539,6 @@ footer {
 
 .back-info {
     margin-top: 20px;
-    position: relative;
-    z-index: 1;
 }
 
 .back-columns {
@@ -556,26 +557,17 @@ footer {
     color: #5b6474;
     font-size: 13px;
     line-height: 1.8;
-    z-index: 1;
 }
 
 .back-message strong {
     color: #963d40;
 }
 
-/* PREVIEW HINT */
-
 .preview-hint {
     text-align: center;
     color: #7b8493;
     font-size: 12px;
     padding: 12px;
-}
-
-/* HIDDEN */
-
-.hidden {
-    display: none !important;
 }
 
 /* TABLET */
@@ -642,7 +634,7 @@ footer {
     }
 }
 
-/* A4 PDF */
+/* A4 PRINT */
 
 @page {
     size: A4 portrait;
@@ -681,10 +673,6 @@ footer {
         border: 1px solid #333;
         break-inside: avoid;
         page-break-inside: avoid;
-    }
-
-    .demo-card:last-child {
-        margin-bottom: 0;
     }
 
     .card-header {
