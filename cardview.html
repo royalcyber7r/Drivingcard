@@ -1,255 +1,502 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>DL Demo Card Preview</title>
+<title>Driving License Demo Card</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
-    <!-- QR Generator -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Barcode Generator -->
-    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+
+<style>
+/* DEMO LOGO WATERMARK */
+
+.license-card {
+    position: relative;
+    overflow: hidden;
+    background: #fff;
+    isolation: isolate;
+}
+
+.watermark-image {
+    position: absolute;
+    width: 390px;
+    height: 390px;
+    object-fit: contain;
+    left: 50%;
+    top: 53%;
+    transform: translate(-50%, -50%);
+    opacity: 0.13;
+    z-index: -2;
+    pointer-events: none;
+}
+
+.watermark {
+    display: none !important;
+}
+
+/* HEADER */
+
+.card-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.card-title {
+    flex: 1;
+    min-width: 0;
+}
+
+.country-label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    min-width: 245px;
+    text-align: right;
+    color: #477b69;
+    border-left: 1px solid #d8e0da;
+    padding-left: 14px;
+}
+
+.country-text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-family: "Noto Sans Bengali", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.country-text small {
+    font-family: Roboto, sans-serif;
+    font-size: 12px;
+}
+
+.header-demo-logo {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* DEMO INDICATOR */
+
+.demo-stamp {
+    position: absolute;
+    top: 145px;
+    right: 18px;
+    width: 105px;
+    text-align: center;
+    color: #963d40;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.demo-stamp span {
+    display: block;
+    border: 5px solid #963d40;
+    opacity: .55;
+    width: 75px;
+    height: 75px;
+    margin: 10px auto;
+}
+
+.card-bottom {
+    color: #963d40;
+}
+
+/* BACK SIDE */
+
+.back-card .watermark-image {
+    width: 390px;
+    height: 390px;
+}
+
+.back-logo {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+@media print {
+    .watermark-image {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+</style>
+
 </head>
 
 <body>
 
-<header class="topbar no-print">
-    <div>
-        <div class="eyebrow">PERSONAL DESIGN PROJECT</div>
-        <h1>DL Demo Studio</h1>
-        <p>Generated Card Preview</p>
-    </div>
+<div class="layout">
 
-    <span class="header-tag">DEMO ONLY</span>
-</header>
+<!-- FRONT AND BACK PREVIEW -->
 
-<main class="preview-container">
+<div class="preview-area">
 
-    <div class="preview-heading no-print">
+<div class="section-heading preview-heading">
 
-        <div>
-            <h2>Demo Card Preview</h2>
-            <p>Front ও Back Preview</p>
-        </div>
+<div>
+<p class="eyebrow">PERSONAL DESIGN PREVIEW</p>
+<h2>Demo License Card</h2>
+</div>
 
-        <div class="preview-actions">
+<div class="side-switch">
+<button class="side-btn active" onclick="showSide('front')">Front</button>
+<button class="side-btn" onclick="showSide('back')">Back</button>
+</div>
 
-            <button class="secondary"
-                    onclick="history.back()">
-                ← Back
-            </button>
+</div>
 
-            <button class="primary"
-                    onclick="window.print()">
-                Save A4 PDF
-            </button>
+<div class="card-wrap">
 
-        </div>
+<!-- FRONT CARD -->
 
-    </div>
+<div class="license-card front-card" id="frontCard">
 
+<!-- WATERMARK PNG -->
+<img
+class="watermark-image"
+src="YOUR_DEMO_LOGO_PNG_URL"
+alt="Demo Watermark"
+>
 
-    <!-- FRONT DEMO CARD -->
+<div class="card-top">
 
-    <section class="demo-card front-card">
+<div class="brand-mark">
+DL
+<small>DEMO</small>
+</div>
 
-        <div class="demo-watermark">SAMPLE</div>
+<div class="card-title">
 
-        <div class="card-header">
+<strong>নমুনা ই-ড্রাইভিং লাইসেন্স</strong>
 
-            <div class="demo-logo">
-                <strong>DL</strong>
-                <small>DEMO</small>
-            </div>
+<b>Sample E-Driving License</b>
 
-            <div class="card-heading">
-                <h2>নমুনা ড্রাইভিং কার্ড</h2>
-                <strong>PERSONAL E-DRIVING CARD</strong>
-            </div>
+</div>
 
-            <div class="demo-country">
-                PERSONAL<br>
-                DEMO CARD
-            </div>
+<!-- RIGHT HEADER -->
 
-        </div>
+<div class="country-label">
 
+<div class="country-text">
 
-        <div class="front-layout">
+<span>ব্যক্তিগত নমুনা কার্ড</span>
 
-            <div class="person-photo">
-                <img id="cardPhoto" alt="Demo Photo">
-            </div>
+<small>PERSONAL DEMO CARD</small>
 
-            <div class="card-details">
+</div>
 
-                <div class="card-field">
-                    <span>নাম / Name</span>
-                    <strong id="cardName"></strong>
-                </div>
+<img
+class="header-demo-logo"
+src="YOUR_DEMO_LOGO_PNG_URL"
+alt="Demo Logo"
+>
 
-                <div class="card-field">
-                    <span>জন্ম তারিখ / Date of Birth</span>
-                    <strong id="cardDob"></strong>
-                </div>
+</div>
 
-                <div class="card-field">
-                    <span>পিতা / স্বামী / Guardian</span>
-                    <strong id="cardGuardian"></strong>
-                </div>
+</div>
 
-                <div class="date-row">
 
-                    <div class="card-field">
-                        <span>ইস্যু / Issue</span>
-                        <strong id="cardIssue"></strong>
-                    </div>
+<!-- DEMO STAMP -->
 
-                    <div class="card-field">
-                        <span>মেয়াদ শেষ / Expiry</span>
-                        <strong id="cardExpiry"></strong>
-                    </div>
+<div class="demo-stamp">
+DEMO<br>ONLY
+<span></span>
+</div>
 
-                </div>
 
-                <div class="date-row">
+<!-- CARD CONTENT -->
 
-                    <div class="card-field">
-                        <span>নমুনা রেফারেন্স / Demo Ref.</span>
-                        <strong id="cardReference"></strong>
-                    </div>
+<div class="front-content">
 
-                    <div class="card-field">
-                        <span>প্রদানকারী প্রতিষ্ঠান / Demo Issuer</span>
-                        <strong id="cardIssuer"></strong>
-                    </div>
+<!-- PHOTO -->
 
-                </div>
+<div class="photo-frame">
 
-            </div>
+<img id="cardPhoto" src="" alt="Demo Photo">
 
+</div>
 
-            <div class="qr-section">
 
-                <div class="demo-label">
-                    DEMO<br>ONLY
-                </div>
+<!-- DETAILS -->
 
-                <div id="qrCode"></div>
+<div class="details">
 
-                <small>NON-FUNCTIONAL DEMO QR</small>
+<div class="field">
+<span>নাম / Name</span>
+<strong id="cardName">—</strong>
+</div>
 
-            </div>
+<div class="field">
+<span>জন্ম তারিখ / Date of Birth</span>
+<strong id="cardDob">—</strong>
+</div>
 
-        </div>
+<div class="field">
+<span>পিতা / স্বামী / Guardian</span>
+<strong id="cardGuardian">—</strong>
+</div>
 
+<div class="date-row">
 
-        <div class="card-disclaimer">
-            FOR PERSONAL DESIGN PREVIEW ONLY — NOT VALID FOR IDENTIFICATION OR DRIVING
-        </div>
+<div class="field">
+<span>ইস্যু / Issue</span>
+<strong id="cardIssue">—</strong>
+</div>
 
-        <div class="card-footer">
-            PERSONAL DEMO CARD · NOT AN OFFICIAL DOCUMENT
-        </div>
+<div class="field">
+<span>মেয়াদ / Valid Until</span>
+<strong id="cardExpiry">—</strong>
+</div>
 
-    </section>
+</div>
 
+<p class="tiny-note">
+FOR DESIGN PREVIEW ONLY — NOT VALID FOR IDENTIFICATION OR DRIVING
+</p>
 
-    <!-- BACK DEMO CARD -->
+<div class="field">
+<span>নমুনা রেফারেন্স / Demo Ref.</span>
+<strong id="cardReference">—</strong>
+</div>
 
-    <section class="demo-card back-card">
+<div class="field">
+<span>নমুনা প্রদানকারী / Demo Issuer</span>
+<strong id="cardIssuer">—</strong>
+</div>
 
-        <div class="demo-watermark">SAMPLE</div>
+</div>
 
-        <div class="back-warning">
-            THIS IS A PERSONAL DESIGN SAMPLE — NOT AN OFFICIAL DOCUMENT
-        </div>
 
+<!-- QR -->
 
-        <div class="back-top">
+<div class="fake-code">
 
-            <div class="mini-photo">
-                <img id="backPhoto" alt="Demo Photo">
-            </div>
+<span>DEMO ONLY</span>
 
-            <div class="barcode-section">
+<div id="qrCode"></div>
 
-                <svg id="demoBarcode"></svg>
+</div>
 
-                <div class="barcode-caption">
-                    NON-FUNCTIONAL DEMO BARCODE
-                </div>
+</div>
 
-            </div>
+<div class="card-bottom">
+PERSONAL DESIGN SAMPLE • NOT AN OFFICIAL DOCUMENT
+</div>
 
-            <div class="demo-logo small-logo">
-                <strong>DL</strong>
-                <small>DEMO</small>
-            </div>
+</div>
 
-        </div>
 
+<!-- BACK CARD -->
 
-        <div class="back-info">
+<div class="license-card back-card hidden" id="backCard">
 
-            <div class="card-field">
-                <span>ঠিকানা / Address</span>
-                <strong id="backAddress"></strong>
-            </div>
+<img
+class="watermark-image"
+src="YOUR_DEMO_LOGO_PNG_URL"
+alt="Demo Watermark"
+>
 
-            <div class="back-columns">
+<div class="back-warning">
 
-                <div class="card-field">
-                    <span>লাইসেন্স ক্লাস / Vehicle Class</span>
-                    <strong id="backClass"></strong>
-                </div>
+IF FOUND, THIS IS A PERSONAL DEMO CARD
+<br>
+NO OFFICIAL OR LEGAL VALIDITY
 
-                <div class="card-field">
-                    <span>প্রথম ইস্যু / First Issue</span>
-                    <strong id="backIssue"></strong>
-                </div>
+</div>
 
-                <div class="card-field">
-                    <span>নমুনা রেফারেন্স / Demo Ref.</span>
-                    <strong id="backReference"></strong>
-                </div>
 
-                <div class="card-field">
-                    <span>প্রদানকারী প্রতিষ্ঠান / Demo Issuer</span>
-                    <strong id="backIssuer"></strong>
-                </div>
+<div class="back-top">
 
-            </div>
+<div class="mini-photo">
 
-        </div>
+<img id="backPhoto" src="" alt="Demo Photo">
 
+</div>
 
-        <div class="back-message">
-            For personal design demonstration only.<br>
-            No government verification service is connected.<br>
-            <strong>NOT A GOVERNMENT DOCUMENT</strong>
-        </div>
+<div class="decorative-barcode">
 
+<svg id="demoBarcode"></svg>
 
-        <div class="back-footer">
-            DL DEMO STUDIO · PERSONAL SAMPLE CARD
-        </div>
+</div>
 
-    </section>
+<img
+class="back-logo"
+src="YOUR_DEMO_LOGO_PNG_URL"
+alt="Demo Logo"
+>
 
+</div>
 
-    <div class="preview-hint no-print">
-        মোবাইলে কার্ড দেখতে প্রয়োজনে Horizontal Scroll করুন।
-        PDF করতে Save A4 PDF বাটনে চাপ দিন।
-    </div>
 
-</main>
+<!-- ADDRESS -->
+
+<div class="back-info">
+
+<div class="field">
+
+<span>ঠিকানা / Address</span>
+
+<strong id="backAddress">—</strong>
+
+</div>
+
+</div>
+
+
+<!-- BACK COLUMNS -->
+
+<div class="back-columns">
+
+<div class="field">
+
+<span>যানবাহনের নমুনা শ্রেণি / Vehicle Class</span>
+
+<strong id="backClass">—</strong>
+
+</div>
+
+<div class="field">
+
+<span>প্রথম ইস্যু / First Issue</span>
+
+<strong id="backIssue">—</strong>
+
+</div>
+
+<div class="field">
+
+<span>নমুনা রেফারেন্স / Demo Reference</span>
+
+<strong id="backReference">—</strong>
+
+</div>
+
+<div class="field">
+
+<span>নমুনা কর্তৃপক্ষ / Demo Issuer</span>
+
+<strong id="backIssuer">—</strong>
+
+</div>
+
+</div>
+
+
+<div class="back-lower">
+
+<div></div>
+
+<p>
+
+For design demonstration only.<br>
+
+No verification service is connected.<br>
+
+<b>NOT A GOVERNMENT DOCUMENT</b>
+
+</p>
+
+<div class="leaf-mark">✦</div>
+
+</div>
+
+
+<div class="back-footer">
+
+PERSONAL DEMO CARD DESIGN
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ACTION BUTTONS -->
+
+<div class="actions" style="margin-top:20px;">
+
+<button class="primary" onclick="window.print()">
+Save PDF / Print
+</button>
+
+<button class="secondary" onclick="location.href='index.html'">
+Edit Information
+</button>
+
+</div>
+
+<p class="notice">
+
+এটি শুধুমাত্র ব্যক্তিগত ডিজাইন ডেমো।
+কোনো সরকারি পরিচয়পত্র বা ড্রাইভিং লাইসেন্স নয়।
+
+</p>
+
+</div>
+
+</div>
+
 
 <script src="script.js"></script>
+
+<script>
+
+/* FRONT / BACK SWITCH */
+
+function showSide(side) {
+
+const front = document.getElementById("frontCard");
+const back = document.getElementById("backCard");
+
+document.querySelectorAll(".side-btn").forEach(btn => {
+    btn.classList.remove("active");
+});
+
+if (side === "front") {
+
+    front.classList.remove("hidden");
+    back.classList.add("hidden");
+
+    document.querySelectorAll(".side-btn")[0].classList.add("active");
+
+} else {
+
+    back.classList.remove("hidden");
+    front.classList.add("hidden");
+
+    document.querySelectorAll(".side-btn")[1].classList.add("active");
+
+}
+
+}
+
+/* SHOW BOTH SIDES WHEN PRINTING */
+
+window.addEventListener("beforeprint", function() {
+
+    document.getElementById("frontCard").classList.remove("hidden");
+    document.getElementById("backCard").classList.remove("hidden");
+
+});
+
+</script>
 
 </body>
 </html>
