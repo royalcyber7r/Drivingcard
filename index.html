@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Personal driving licence sample card designer">
+  <title>Driving License Sample Card Maker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">PERSONAL DESIGN TOOL</p>
+      <h1>Driving License Sample Card Maker</h1>
+      <p class="subhead">নিজস্ব তথ্য দিয়ে একটি ডেমো কার্ড তৈরি করুন</p>
+    </div>
+    <span class="header-tag">DEMO ONLY</span>
+  </header>
+
+  <main class="layout">
+    <section class="panel form-panel">
+      <div class="section-heading">
+        <div><p class="eyebrow">CARD DETAILS</p><h2>তথ্য লিখুন</h2></div>
+        <button type="button" class="text-button" id="resetBtn">Reset</button>
+      </div>
+
+      <form id="cardForm">
+        <div class="form-grid">
+          <label>নাম (ইংরেজি)<input name="nameEn" id="nameEn" value="SAMPLE DRIVER" maxlength="60"></label>
+          <label>নাম (বাংলা)<input name="nameBn" id="nameBn" value="নমুনা চালক" maxlength="60"></label>
+          <label>জন্ম তারিখ<input name="dob" id="dob" value="15-NOV-1998" maxlength="20"></label>
+          <label>রক্তের গ্রুপ<input name="blood" id="blood" value="B (+) VE" maxlength="12"></label>
+          <label>পিতা / স্বামী<input name="guardian" id="guardian" value="SAMPLE GUARDIAN" maxlength="60"></label>
+          <label>ইস্যুর তারিখ<input name="issue" id="issue" value="24-OCT-2026" maxlength="20"></label>
+          <label>মেয়াদ শেষ<input name="expiry" id="expiry" value="23-OCT-2036" maxlength="20"></label>
+          <label>নমুনা রেফারেন্স<input name="reference" id="reference" value="DEMO-000000" maxlength="24"></label>
+          <label class="full">ঠিকানা<input name="address" id="address" value="SAMPLE ADDRESS, SAMPLE AREA, BANGLADESH" maxlength="130"></label>
+          <label>অনুমোদিত যানবাহনের শ্রেণি<input name="classes" id="classes" value="LIGHT VEHICLE, MOTORCYCLE" maxlength="80"></label>
+          <label>প্রথম ইস্যুর তারিখ<input name="firstIssue" id="firstIssue" value="24-OCT-2026" maxlength="20"></label>
+        </div>
+
+        <div class="upload-row">
+          <div><strong>প্রোফাইল ছবি</strong><small>JPG বা PNG • স্থানীয়ভাবে ব্যবহৃত হবে</small></div>
+          <label class="upload-button">ছবি নির্বাচন<input type="file" id="photoInput" accept="image/*"></label>
+        </div>
+        <div class="actions">
+          <button type="button" class="primary" id="downloadPng">Download PNG</button>
+          <button type="button" class="secondary" id="printBtn">Print / Save PDF</button>
+        </div>
+        <p class="notice">এটি কেবল ব্যক্তিগত ডিজাইন অনুশীলনের নমুনা। কোনো সরকারি পরিচয়পত্র বা ড্রাইভিং লাইসেন্স নয়। এতে কোনো সরকারি সিল, কার্যকর QR বা বারকোড নেই।</p>
+      </form>
+    </section>
+
+    <section class="preview-area">
+      <div class="section-heading preview-heading">
+        <div><p class="eyebrow">LIVE PREVIEW</p><h2>কার্ড প্রিভিউ</h2></div>
+        <div class="side-switch" role="group" aria-label="Card side">
+          <button class="side-btn active" data-side="front" type="button">Front</button>
+          <button class="side-btn" data-side="back" type="button">Back</button>
+        </div>
+      </div>
+
+      <div class="card-wrap">
+        <article class="license-card front-card" id="frontCard">
+          <div class="watermark">SAMPLE</div>
+          <div class="card-top">
+            <div class="brand-mark">DL<br><small>DEMO</small></div>
+            <div class="card-title"><strong>নমুনা ই-ড্রাইভিং লাইসেন্স</strong><b>Sample E-Driving License</b></div>
+            <div class="country-label">PERSONAL<br>DEMO CARD</div>
+          </div>
+          <div class="front-content">
+            <div class="photo-frame"><img id="photoFront" alt="Uploaded sample portrait"></div>
+            <div class="details">
+              <div class="field"><span>নাম / Name</span><strong id="vName">SAMPLE DRIVER</strong></div>
+              <div class="field"><span>জন্ম তারিখ / Date of Birth</span><strong id="vDob">15-NOV-1998</strong></div>
+              <div class="field"><span>রক্তের গ্রুপ / Blood Group</span><strong id="vBlood">B (+) VE</strong></div>
+              <div class="field"><span>পিতা / স্বামী / Guardian</span><strong id="vGuardian">SAMPLE GUARDIAN</strong></div>
+              <div class="date-row">
+                <div class="field"><span>ইস্যু / Issue</span><strong id="vIssue">24-OCT-2026</strong></div>
+                <div class="field"><span>মেয়াদ / Valid Until</span><strong id="vExpiry">23-OCT-2036</strong></div>
+              </div>
+              <p class="tiny-note">FOR DESIGN PREVIEW ONLY — NOT VALID FOR IDENTIFICATION OR DRIVING</p>
+              <div class="ref-row"><div class="field"><span>নমুনা রেফারেন্স / Demo Ref.</span><strong id="vReference">DEMO-000000</strong></div><div class="issuer">NON-GOVERNMENT<br>DESIGN SAMPLE</div></div>
+            </div>
+            <div class="fake-code" aria-label="Decorative sample pattern"><span>DEMO<br>ONLY</span><div class="code-grid" id="frontPattern"></div></div>
+          </div>
+          <div class="card-bottom">PERSONAL DESIGN SAMPLE • NOT AN OFFICIAL DOCUMENT</div>
+        </article>
+
+        <article class="license-card back-card hidden" id="backCard">
+          <div class="watermark">SAMPLE</div>
+          <div class="back-warning">IF FOUND, THIS SAMPLE CARD HAS NO OFFICIAL OR LEGAL VALIDITY</div>
+          <div class="back-top">
+            <div class="mini-photo"><img id="photoBack" alt="Uploaded sample portrait"></div>
+            <div class="decorative-barcode" id="barPattern"><span>NON-FUNCTIONAL SAMPLE CODE</span></div>
+            <div class="brand-mark small-mark">DL</div>
+          </div>
+          <div class="back-info">
+            <div class="field"><span>ঠিকানা / Address</span><strong id="vAddress">SAMPLE ADDRESS, SAMPLE AREA, BANGLADESH</strong></div>
+            <div class="back-columns">
+              <div class="field"><span>অনুমোদিত যানবাহনের শ্রেণি / Vehicle Class</span><strong id="vClasses">LIGHT VEHICLE, MOTORCYCLE</strong></div>
+              <div class="field"><span>প্রথম ইস্যুর তারিখ / First Issue</span><strong id="vFirstIssue">24-OCT-2026</strong></div>
+            </div>
+          </div>
+          <div class="back-lower">
+            <div class="fake-code back-code"><span>DEMO<br>ONLY</span><div class="code-grid" id="backPattern"></div></div>
+            <p>For design demonstration only.<br>No verification service is connected.<br><b>NOT A GOVERNMENT DOCUMENT</b></p>
+            <div class="leaf-mark">✦</div>
+          </div>
+          <div class="back-footer">DRIVING LICENSE — SAMPLE CARD DESIGN</div>
+        </article>
+      </div>
+      <p class="preview-hint">মোবাইলে কার্ড দেখতে পাশের সুইচ ব্যবহার করুন। ডাউনলোডে দুই পাশ একসঙ্গে PNG হবে।</p>
+    </section>
+  </main>
+
+  <footer>Built with HTML, CSS and JavaScript • All entered data stays in your browser.</footer>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
