@@ -267,7 +267,6 @@ body {
   right: 10px;
   width: 160px;  /* প্রয়োজন অনুযায়ী সাইজ কম-বেশি করতে পারেন */
   height: 160px;
-  display: flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
