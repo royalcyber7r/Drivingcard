@@ -263,18 +263,22 @@ body {
   position: relative;
 }
 
-/* বক্স ছাড়া শুধু 160x160 সাইজের QR */
-.front-qr {
+/* নতুন QR বক্সের স্টাইল */
+.front-qr-box {
   position: absolute;
   top: 0;
   right: 10px;
-  width: 160px;
+  width: 160px;  /* প্রয়োজন অনুযায়ী সাইজ কম-বেশি করতে পারেন */
   height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
   z-index: 2;
 }
 
-.front-qr img,
-.front-qr canvas {
+.front-qr-box img,
+.front-qr-box canvas {
   width: 100%;
   height: 100%;
   object-fit: contain;
