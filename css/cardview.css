@@ -298,7 +298,7 @@ body {
 .photo-frame {
   width: 245px;
   height: 280px;
-  border: 3px solid #292929;
+  border: 2px solid #292929;
   background: #e5e7eb;
   overflow: hidden;
   position: relative;
