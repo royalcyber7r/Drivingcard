@@ -205,8 +205,6 @@ body {
   gap: 10px;
   text-align: right;
   color: var(--green);
-  border-left: 1px solid #d8e0da;
-  padding-left: 14px;
 }
 
 .country-text {
