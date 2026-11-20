@@ -80,14 +80,11 @@ setText("backAddress", data.address);
 setText("backClass", data.vehicle);
 
 /*
-   Pre Ref No. আপাতত Demo Reference
-   থেকে দেখানো হচ্ছে।
+   Prev. Ref. No. ফিল্ড খালি রাখা হয়েছে,
+   কোনো ডাটা দেখানো হবে না।
 */
 
-setText(
-  "backPreRefNo",
-  data.preRefNo || data.reference
-);
+setText("backPreRefNo", "");
 
 setText("backIssueDate", formatDate(data.issue));
 
