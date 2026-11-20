@@ -211,7 +211,7 @@ body {
   justify-content: flex-end;
   gap: 12px;
   text-align: right;
-  color: var(--green);
+  color: green;
 }
 
 .country-text {
