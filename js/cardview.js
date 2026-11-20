@@ -166,6 +166,11 @@ function generateBarcode() {
     return;
   }
 
+  const maroonColor =
+    getComputedStyle(document.documentElement)
+      .getPropertyValue("--maroon")
+      .trim() || "#963d40";
+
   const barcodeValue = "DEMO-" +
     String(data.reference || "000000")
       .replace(/[^a-zA-Z0-9-]/g, "")
@@ -173,10 +178,10 @@ function generateBarcode() {
 
   JsBarcode("#demoBarcode", barcodeValue, {
     format: "CODE128",
-    lineColor: "#4a0e0e",
+    lineColor: maroonColor,
     background: "transparent",
     width: 3,
-    height: 55, /* লাল বক্সের উচ্চতার সাথে মিলিয়ে */
+    height: 55,
     displayValue: false,
     margin: 0
   });
