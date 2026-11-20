@@ -382,7 +382,7 @@ body {
 
 .tiny-note {
   color: #777;
-  font-size: 9px;
+  font-size: 18px;
   font-weight: 700;
   margin: 0;
   line-height: 1.5;
@@ -398,7 +398,7 @@ body {
   bottom: 8px;
   text-align: center;
   color: var(--maroon);
-  font-size: 10px;
+  font-size: 25px;
   font-weight: 700;
   letter-spacing: 1px;
 }
