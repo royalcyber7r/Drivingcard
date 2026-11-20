@@ -127,6 +127,11 @@ function generateDemoQR(containerId) {
     return;
   }
 
+  const maroonColor =
+    getComputedStyle(document.documentElement)
+      .getPropertyValue("--maroon")
+      .trim() || "#800000";
+
   const demoQRData = [
     "PERSONAL DEMO CARD",
     "NOT AN OFFICIAL DOCUMENT",
@@ -135,14 +140,18 @@ function generateDemoQR(containerId) {
 
   new QRCode(qrContainer, {
     text: demoQRData,
-    width: 120,
-    height: 120,
-    colorDark: "#17233d",
+    width: 160,
+    height: 160,
+    colorDark: maroonColor,
     colorLight: "#ffffff",
     correctLevel: QRCode.CorrectLevel.L
   });
 
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  generateDemoQR("qrCode");
+});
 
 /* =====================================
    DEMO BARCODE GENERATION
