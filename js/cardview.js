@@ -179,7 +179,7 @@ function generateBarcode() {
     lineColor: "#4a0e0e",
     background: "transparent",
     width: 3,
-    height: 105,
+    height: 55, /* লাল বক্সের উচ্চতার সাথে মিলিয়ে */
     displayValue: false,
     margin: 0
   });
