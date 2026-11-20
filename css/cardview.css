@@ -21,8 +21,8 @@ body {
 /* HEADER */
 
 .preview-header {
-  max-width: 1220px;
-  margin: 20px auto;
+  max-width: 1100px;
+  margin: 24px auto;
   padding: 0 20px;
   display: flex;
   align-items: center;
@@ -45,7 +45,7 @@ body {
 /* MAIN CONTAINER */
 
 .preview-container {
-  max-width: 1220px;
+  max-width: 1100px;
   margin: auto;
   padding: 20px;
   background: #fff;
@@ -54,55 +54,63 @@ body {
   box-shadow: 0 8px 30px #1d2c4610;
 }
 
-/* SWITCH HIDDEN */
+/* FRONT BACK SWITCH */
 
 .switch-area {
-  display: none;
+  display: flex;
+  width: fit-content;
+  background: #eef1f6;
+  padding: 4px;
+  border-radius: 10px;
+  margin-bottom: 20px;
 }
 
-/* CARD SCROLL & SIDE-BY-SIDE LAYOUT */
+.side-button {
+  padding: 10px 22px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #667085;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.side-button.active {
+  background: white;
+  color: var(--ink);
+  box-shadow: 0 1px 5px #0001;
+}
+
+/* CARD SCROLL */
 
 .card-scroll {
   width: 100%;
   overflow-x: auto;
-  padding: 10px 0 18px;
+  padding: 5px 0 18px;
   -webkit-overflow-scrolling: touch;
 }
 
-.cards-both-view {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: nowrap !important;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 20px;
-  width: max-content;
-  margin: 0 auto;
-}
-
 .hidden {
-  display: block !important;
+  display: none !important;
 }
 
-/* CARD BASE (পাশাপাশি ২টি কার্ড A4 ল্যান্ডস্কেপে ফিট করার সাইজ) */
+/* CARD BASE */
 
 .license-card {
   position: relative;
-  width: 530px;
-  height: 345px;
-  min-width: 530px;
-  max-width: 530px;
-  flex: 0 0 530px;
+  width: 1000px;
+  height: 650px;
+  min-width: 1000px;
   overflow: hidden;
   isolation: isolate;
   background: #fff;
-  border: 1.5px solid #222;
+  border: 1px solid #d9dee8;
 }
 
 .watermark-image {
   position: absolute;
-  width: 215px;
-  height: 215px;
+  width: 430px;
+  height: 430px;
   max-width: none;
   left: 50%;
   top: 50%;
@@ -133,10 +141,10 @@ body {
 /* BRAND LOGO */
 
 .brand-mark {
-  width: 34px;
-  height: 34px;
-  flex: 0 0 34px;
-  border: 1.5px solid #668077;
+  width: 66px;
+  height: 66px;
+  flex: 0 0 66px;
+  border: 2px solid #668077;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -161,10 +169,10 @@ body {
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 15px;
   width: 100%;
-  height: 62px;
-  padding: 6px 12px 2px;
+  height: 135px;
+  padding: 10px 22px;
 }
 
 .card-title {
@@ -173,21 +181,21 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1px;
+  gap: 5px;
 }
 
 .card-title strong {
   font-family: "Noto Sans Bengali", sans-serif;
-  font-size: 12.5px;
-  line-height: 1.25;
+  font-size: 22px;
+  line-height: 1.4;
 }
 
 .card-title b {
-  font-size: 9px;
-  line-height: 1.25;
+  font-size: 16px;
+  line-height: 1.4;
 }
 
-/* RIGHT HEADER TEXT */
+/* RIGHT HEADER TEXT (FIXED) */
 
 .country-header-stack {
   flex: 0 0 auto;
@@ -201,9 +209,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 6px;
+  gap: 12px;
   text-align: right;
-  color: var(--green);
+  color: green;
 }
 
 .country-text {
@@ -217,20 +225,20 @@ body {
 }
 
 .country-text strong {
-  font-size: 12.5px;
+  font-size: 23px;
   font-family: "Noto Sans Bengali", sans-serif;
-  line-height: 1.2;
+  line-height: 1.3;
 }
 
 .country-text small {
-  font-size: 9px;
-  margin-top: 1px;
+  font-size: 17px;
+  margin-top: 3px;
 }
 
 .country-logo {
-  width: 30px;
-  height: 30px;
-  flex: 0 0 30px;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -244,27 +252,31 @@ body {
   display: block;
 }
 
-/* FRONT CONTENT */
+/* HEADER QR */
 
-.front-content {
-  position: relative;
-  display: grid;
-  grid-template-columns: 122px minmax(0, 1fr);
-  gap: 12px;
-  margin-top: 6px;
-  padding: 0 12px;
-  align-items: start;
-}
-
-.front-qr-box {
-  position: absolute;
-  top: 2px;
-  right: 12px;
-  width: 88px;
-  height: 88px;
+.header-logo-area {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex: 0 0 75px;
+}
+
+/* front-content অবশ্যই position: relative থাকতে হবে */
+.front-content {
+  position: relative;
+}
+
+/* নতুন QR বক্সের স্টাইল */
+.front-qr-box {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  width: 160px;
+  height: 160px;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
   z-index: 2;
 }
 
@@ -276,12 +288,23 @@ body {
   display: block;
 }
 
+/* FRONT CONTENT */
+
+.front-content {
+  display: grid;
+  grid-template-columns: 245px minmax(0, 1fr);
+  gap: 22px;
+  margin-top: 18px;
+  padding: 0 22px;
+  align-items: start;
+}
+
 /* PHOTO */
 
 .photo-frame {
-  width: 122px;
-  height: 148px;
-  border: 1.5px solid #222;
+  width: 245px;
+  height: 280px;
+  border: 2px solid #292929;
   background: #e5e7eb;
   overflow: hidden;
   position: relative;
@@ -301,9 +324,8 @@ body {
 .details {
   display: flex;
   flex-direction: column;
-  gap: 5.5px;
+  gap: 15px;
   min-width: 0;
-  padding-right: 96px;
   position: relative;
   z-index: 2;
 }
@@ -311,7 +333,7 @@ body {
 .field {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 4px;
   min-width: 0;
 }
 
@@ -319,13 +341,13 @@ body {
   font-family: "Noto Sans Bengali", sans-serif;
   color: var(--maroon);
   font-weight: 700;
-  font-size: 8.5px;
-  line-height: 1.25;
+  font-size: 15px;
+  line-height: 1.4;
 }
 
 .field strong {
-  font-size: 9.5px;
-  line-height: 1.25;
+  font-size: 17px;
+  line-height: 1.4;
   overflow-wrap: anywhere;
   color: var(--ink);
 }
@@ -340,40 +362,56 @@ body {
   align-items: start;
 }
 
+/* REFERENCE AND ISSUER */
+
+.reference-issuer-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  margin-top: 3px;
+  min-width: 0;
+  align-items: start;
+}
+
+.reference-issuer-row .field {
+  min-width: 0;
+}
+
 .reference-issuer-row .field strong {
-  font-size: 8.5px;
+  font-size: 15px;
+  overflow-wrap: anywhere;
 }
 
 /* DEMO NOTE */
 
 .tiny-note {
-  color: #666;
-  font-size: 8px;
+  color: #777;
+  font-size: 18px;
   font-weight: 500;
   margin: 0;
-  line-height: 1.3;
+  line-height: 1.5;
 }
 
-/* FRONT & BACK FOOTER */
+/* FRONT FOOTER */
 
 .front-footer,
 .back-footer {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 5px;
+  bottom: 8px;
   text-align: center;
   color: var(--maroon);
-  font-size: 13px;
+  font-size: 25px;
   font-weight: 700;
-  letter-spacing: 0.4px;
+  letter-spacing: 1px;
 }
 
 /* BACK CARD */
 
 .back-card {
   position: relative;
-  padding: 10px 14px;
+  padding: 22px 28px;
 }
 
 /* BACK WARNING */
@@ -382,24 +420,24 @@ body {
   text-align: right;
   color: var(--maroon);
   font-weight: 700;
-  font-size: 10.5px;
-  margin: 0 0 7px;
+  font-size: 21.5px;
+  margin: 3px 0 17px;
 }
 
 /* BACK TOP */
 
 .back-top {
   display: grid;
-  grid-template-columns: 54px minmax(0, 1fr) 34px;
-  gap: 10px;
+  grid-template-columns: 105px minmax(0, 1fr) 66px;
+  gap: 20px;
   align-items: center;
 }
 
 /* SMALL PHOTO */
 
 .mini-photo {
-  width: 54px;
-  height: 64px;
+  width: 105px;
+  height: 125px;
   background: #eee;
   overflow: hidden;
 }
@@ -412,11 +450,19 @@ body {
   width: 100%;
 }
 
+.barcode-area span {
+  color: var(--maroon);
+  font-size: 10px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 5px;
+}
+
 #demoBarcode {
   display: block;
   width: 100%;
-  max-width: 400px;
-  height: 36px;
+  max-width: 730px;
+  height: 80px; /* লাল বক্সের উচ্চতা অনুযায়ী */
   margin: 0 auto;
 }
 
@@ -430,27 +476,27 @@ body {
 
 .back-brand-logo {
   display: block;
-  width: 30px;
-  height: 30px;
+  width: 58px;
+  height: 58px;
   object-fit: contain;
 }
 
 /* BACK INFORMATION */
 
 .back-info {
-  margin-top: 8px;
-  padding-left: 64px;
+  margin-top: 20px;
+  left: 180px;
 }
 
 /* BACK FIELDS */
 
 .back-columns {
   display: grid;
-  grid-template-columns: 1.45fr 1fr;
-  gap: 12px;
-  margin-top: 10px;
-  padding-left: 64px;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 25px;
+  margin-top: 24px;
   align-items: start;
+  left: 180px;
 }
 
 .back-columns .pre-ref-block {
@@ -459,24 +505,25 @@ body {
 }
 
 .back-issue-below-ref {
-  margin-top: 8px;
+  margin-top: 14px;
 }
 
 /* BACK QR */
 
 .back-qr-area {
   position: absolute;
-  left: 14px;
-  bottom: 26px;
+  left: 28px;
+  bottom: 52px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 6px;
   margin: 0;
 }
 
 #backQrCode {
-  width: 84px;
-  height: 84px;
+  width: 155px;
+  height: 155px;
   padding: 0;
   background: transparent;
   border: 0;
@@ -488,10 +535,17 @@ body {
 #backQrCode img,
 #backQrCode canvas {
   display: block;
-  width: 84px !important;
-  height: 84px !important;
-  max-width: 84px;
-  max-height: 84px;
+  width: 155px !important;
+  height: 155px !important;
+  max-width: 155px;
+  max-height: 155px;
+}
+
+.back-qr-area small {
+  max-width: 230px;
+  font-size: 9px;
+  line-height: 1.4;
+  color: var(--muted);
 }
 
 /* BACK MESSAGE */
@@ -499,30 +553,34 @@ body {
 .back-message {
   position: absolute;
   left: 50%;
-  bottom: 28px;
+  bottom: 58px;
   transform: translateX(-50%);
-  width: 170px;
+  width: 260px;
   text-align: center;
   color: #111;
-  font-size: 8.5px;
-  line-height: 1.45;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .back-message-line {
-  width: 105px;
+  width: 175px;
   height: 1px;
   background: #222;
-  margin: 0 auto 4px auto;
+  margin: 0 auto 8px auto;
+}
+
+.back-message strong {
+  color: var(--maroon);
 }
 
 /* BACK RIGHT EMBLEM */
 
 .back-right-emblem {
   position: absolute;
-  right: 14px;
-  bottom: 30px;
-  width: 55px;
-  height: 38px;
+  right: 28px;
+  bottom: 65px;
+  width: 100px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -576,18 +634,42 @@ body {
   line-height: 1.7;
 }
 
-/* A4 PRINT */
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .preview-header {
+    margin: 15px;
+    padding: 0;
+  }
+
+  .preview-header h1 {
+    font-size: 18px;
+  }
+
+  .preview-container {
+    margin: 12px;
+    padding: 13px;
+  }
+
+  .card-scroll {
+    overflow-x: auto;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+}
+
+/* PRINT */
 
 @media print {
   @page {
     size: A4 landscape;
-    margin: 6mm;
+    margin: 8mm;
   }
 
   html,
   body {
-    width: 100%;
-    height: 100%;
     background: #fff !important;
     margin: 0 !important;
     padding: 0 !important;
@@ -601,42 +683,34 @@ body {
   }
 
   .preview-container {
-    max-width: none !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 0 !important;
-    box-shadow: none !important;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
   }
 
   .card-scroll {
-    overflow: visible !important;
-    padding: 0 !important;
-  }
-
-  .cards-both-view {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    justify-content: space-between !important;
-    align-items: flex-start !important;
-    gap: 16px !important;
-    width: 100% !important;
-    margin: 0 auto !important;
+    overflow: visible;
+    padding: 0;
   }
 
   .license-card {
     display: block !important;
-    width: 525px !important;
-    min-width: 525px !important;
-    max-width: 525px !important;
-    height: 342px !important;
-    flex: 0 0 525px !important;
-    margin: 0 !important;
-    break-inside: avoid;
-    page-break-inside: avoid;
+    width: 1000px !important;
+    min-width: 1000px !important;
+    max-width: 1000px !important;
+    height: 650px !important;
+    margin: 0 auto;
+    break-after: page;
+    page-break-after: always;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
+  }
+
+  .license-card:last-child {
+    break-after: auto;
+    page-break-after: auto;
   }
 
   .hidden {
