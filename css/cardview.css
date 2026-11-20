@@ -1,4 +1,4 @@
-- {
+* {
   box-sizing: border-box;
 }
 
@@ -132,6 +132,7 @@ body {
 .back-columns,
 .back-qr-area,
 .back-message,
+.back-right-emblem,
 .back-footer {
   position: relative;
   z-index: 2;
@@ -194,12 +195,17 @@ body {
   line-height: 1.4;
 }
 
-/* RIGHT HEADER TEXT */
+/* RIGHT HEADER TEXT (FIXED) */
+
+.country-header-stack {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
+}
 
 .country-label {
-  flex: 0 0 auto;
-  min-width: 0;
-  max-width: 340px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -210,7 +216,6 @@ body {
 
 .country-text {
   text-align: right;
-  min-width: 0;
 }
 
 .country-text strong,
@@ -220,20 +225,20 @@ body {
 }
 
 .country-text strong {
-  font-size: 24px;
+  font-size: 23px;
   font-family: "Noto Sans Bengali", sans-serif;
-  line-height: 1.4;
+  line-height: 1.3;
 }
 
 .country-text small {
-  font-size: 18px;
-  margin-top: 4px;
+  font-size: 17px;
+  margin-top: 3px;
 }
 
 .country-logo {
-  width: 60px;
-  height: 60px;
-  flex: 0 0 60px;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -246,7 +251,6 @@ body {
   object-fit: contain;
   display: block;
 }
-
 
 /* HEADER QR */
 
@@ -268,7 +272,7 @@ body {
   position: absolute;
   top: 0;
   right: 10px;
-  width: 160px;  /* প্রয়োজন অনুযায়ী সাইজ কম-বেশি করতে পারেন */
+  width: 160px;
   height: 160px;
   align-items: center;
   justify-content: center;
@@ -377,6 +381,7 @@ body {
   font-size: 15px;
   overflow-wrap: anywhere;
 }
+
 /* DEMO NOTE */
 
 .tiny-note {
@@ -498,7 +503,7 @@ body {
   margin-top: 14px;
 }
 
-/* BACK QR (বাম পাশে বড় QR, বর্ডার ছাড়া) */
+/* BACK QR */
 
 .back-qr-area {
   position: absolute;
