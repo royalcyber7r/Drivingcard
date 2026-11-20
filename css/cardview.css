@@ -54,7 +54,7 @@ body {
   box-shadow: 0 8px 30px #1d2c4610;
 }
 
-/* SWITCH */
+/* FRONT BACK SWITCH */
 
 .switch-area {
   display: flex;
@@ -81,7 +81,7 @@ body {
   box-shadow: 0 1px 5px #0001;
 }
 
-/* SCROLL */
+/* CARD SCROLL */
 
 .card-scroll {
   width: 100%;
@@ -94,7 +94,7 @@ body {
   display: none !important;
 }
 
-/* CARD */
+/* CARD BASE */
 
 .license-card {
   position: relative;
@@ -109,21 +109,37 @@ body {
 
 /* WATERMARK */
 
-.demo-watermark {
+.watermark-image {
   position: absolute;
+  width: 430px;
+  height: 430px;
+  max-width: none;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%) rotate(-30deg);
-  font-size: 65px;
-  font-weight: 900;
-  letter-spacing: 5px;
-  color: rgba(150, 61, 64, 0.09);
-  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  opacity: 0.08;
+  z-index: 0;
   pointer-events: none;
-  z-index: 1;
 }
 
-/* BRAND */
+/* CONTENT LAYERS */
+
+.card-top,
+.front-content,
+.front-footer,
+.back-warning,
+.back-top,
+.back-info,
+.back-columns,
+.back-qr-area,
+.back-message,
+.back-footer {
+  position: relative;
+  z-index: 2;
+}
+
+/* BRAND LOGO */
 
 .brand-mark {
   width: 66px;
@@ -134,29 +150,24 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   background: #fff;
 }
 
-.brand-inner {
-  width: 52px;
-  height: 52px;
+.brand-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #eef4f0;
-  border: 2px solid var(--green);
-  color: var(--green);
-  font-size: 13px;
-  font-weight: 900;
 }
 
-/* HEADER */
+/* FRONT HEADER */
 
 .card-top {
-  position: relative;
-  z-index: 2;
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 15px;
   width: 100%;
@@ -166,10 +177,11 @@ body {
 }
 
 .card-title {
-  flex: 1;
+  flex: 1 1 auto;
   min-width: 0;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 5px;
 }
 
@@ -184,11 +196,32 @@ body {
   line-height: 1.4;
 }
 
+/* COUNTRY HEADER */
+
 .country-header-stack {
-  min-width: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  min-width: 255px;
+}
+
+.country-label {
+  flex: 0 0 auto;
+  min-width: 255px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
   text-align: right;
-  border-left: 1px solid var(--line);
-  padding-left: 15px;
+  color: var(--green);
+  border-left: 1px solid #d8e0da;
+  padding-left: 14px;
+}
+
+.country-text {
+  text-align: right;
+  min-width: 0;
 }
 
 .country-text strong,
@@ -197,21 +230,57 @@ body {
 }
 
 .country-text strong {
-  font-size: 15px;
-  color: var(--green);
+  font-size: 14px;
+  font-family: "Noto Sans Bengali", sans-serif;
+  line-height: 1.5;
 }
 
 .country-text small {
-  margin-top: 5px;
   font-size: 10px;
-  color: var(--muted);
+  margin-top: 5px;
+}
+
+/* HEADER LOGO */
+
+.header-logo-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 75px;
+}
+
+/* HEADER QR */
+
+.header-qr-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#qrCode {
+  width: 68px;
+  height: 68px;
+  padding: 3px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e1e5ed;
+}
+
+#qrCode img,
+#qrCode canvas {
+  display: block;
+  width: 60px !important;
+  height: 60px !important;
+  max-width: 60px;
+  max-height: 60px;
 }
 
 /* FRONT CONTENT */
 
 .front-content {
-  position: relative;
-  z-index: 2;
   display: grid;
   grid-template-columns: 245px minmax(0, 1fr);
   gap: 22px;
@@ -277,11 +346,30 @@ body {
 
 .date-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 0.75fr;
   gap: 15px;
 }
 
-/* NOTES */
+/* REFERENCE AND ISSUER */
+
+.reference-issuer-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 8px;
+  min-width: 0;
+}
+
+.reference-issuer-row .field {
+  min-width: 0;
+}
+
+.reference-issuer-row .field strong {
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+/* DEMO NOTE */
 
 .tiny-note {
   color: #777;
@@ -291,55 +379,72 @@ body {
   line-height: 1.5;
 }
 
-/* QR */
+/* FRONT SIDE QR AREA */
+/* QR এবং Reference-এর আলাদা Demo display */
 
 .front-side-qr {
   position: absolute;
-  top: 155px;
+  top: 150px;
   right: 20px;
-  width: 160px;
+  width: 165px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 18px;
   z-index: 3;
 }
 
 .front-large-qr {
-  width: 160px;
-  height: 160px;
+  width: 165px;
+  height: 165px;
   padding: 5px;
-  border: 1px solid var(--line);
-  background: white;
+  background: #fff;
+  border: 1px solid #d9dee8;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .front-large-qr #qrCode {
-  width: 148px;
-  height: 148px;
+  width: 150px;
+  height: 150px;
   padding: 0;
   border: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .front-large-qr #qrCode img,
 .front-large-qr #qrCode canvas {
   display: block;
-  width: 148px !important;
-  height: 148px !important;
-  max-width: 148px !important;
-  max-height: 148px !important;
+  width: 150px !important;
+  height: 150px !important;
+  max-width: 150px !important;
+  max-height: 150px !important;
 }
 
-.qr-caption {
+/* FRONT REFERENCE */
+
+.front-reference-box {
+  width: 150px;
+  min-height: 32px;
+  padding: 5px;
+  border: 1px solid #777;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  overflow-wrap: anywhere;
+}
+
+.front-reference-box span {
+  display: block;
   font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  color: var(--maroon);
+  color: #555;
+}
+
+.front-reference-box strong {
+  font-size: 12px;
+  color: var(--ink);
 }
 
 /* FRONT FOOTER */
@@ -355,7 +460,6 @@ body {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1px;
-  z-index: 5;
 }
 
 /* BACK CARD */
@@ -367,8 +471,6 @@ body {
 /* BACK WARNING */
 
 .back-warning {
-  position: relative;
-  z-index: 2;
   text-align: center;
   color: var(--maroon);
   font-weight: 700;
@@ -379,8 +481,6 @@ body {
 /* BACK TOP */
 
 .back-top {
-  position: relative;
-  z-index: 2;
   display: grid;
   grid-template-columns: 105px minmax(0, 1fr) 66px;
   gap: 20px;
@@ -426,24 +526,22 @@ body {
   justify-content: center;
 }
 
-.back-brand .brand-inner {
+.back-brand-logo {
+  display: block;
   width: 58px;
   height: 58px;
+  object-fit: contain;
 }
 
-/* BACK INFO */
+/* BACK INFORMATION */
 
 .back-info {
-  position: relative;
-  z-index: 2;
   margin-top: 20px;
 }
 
 /* BACK FIELDS */
 
 .back-columns {
-  position: relative;
-  z-index: 2;
   display: grid;
   grid-template-columns: 1.3fr 1fr 1fr;
   gap: 25px;
@@ -454,13 +552,12 @@ body {
 /* BACK QR */
 
 .back-qr-area {
-  position: relative;
-  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 6px;
   margin-top: 22px;
+  margin-left: 0;
 }
 
 #backQrCode {
@@ -468,7 +565,7 @@ body {
   height: 85px;
   padding: 3px;
   background: #fff;
-  border: 1px solid var(--line);
+  border: 1px solid #d9dee8;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -500,7 +597,6 @@ body {
   color: #4b5563;
   font-size: 12px;
   line-height: 1.8;
-  z-index: 2;
 }
 
 .back-message strong {
@@ -535,7 +631,7 @@ body {
   color: var(--ink);
 }
 
-/* NOTICE */
+/* DEMO NOTICE */
 
 .demo-notice {
   margin-top: 18px;
@@ -577,7 +673,6 @@ body {
 /* PRINT */
 
 @media print {
-
   @page {
     size: A4 landscape;
     margin: 8mm;
