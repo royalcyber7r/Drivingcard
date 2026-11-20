@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Personal Demo Card</title>
+<title>Personal Demo Card Preview</title>
 
 <link rel="stylesheet" href="css/cardview.css">
 
@@ -19,7 +19,7 @@
 <header class="preview-header">
   <div>
     <span>PERSONAL DESIGN PREVIEW</span>
-    <h1>Personal Demo Card</h1>
+    <h1>Demo License Card</h1>
   </div>
 
   <button class="edit-button" onclick="editInformation()">
@@ -30,47 +30,64 @@
 <main class="preview-container">
 
   <div class="switch-area">
-    <button class="side-button active" id="frontButton"
-      onclick="showSide('front')">Front</button>
-
-    <button class="side-button" id="backButton"
-      onclick="showSide('back')">Back</button>
+    <button class="side-button active" id="frontButton" onclick="showSide('front')">Front</button>
+    <button class="side-button" id="backButton" onclick="showSide('back')">Back</button>
   </div>
 
   <div class="card-scroll">
 
-    <!-- FRONT -->
+    <!-- FRONT SIDE -->
 
     <section class="license-card front-card" id="frontCard">
 
-      <div class="demo-watermark">
-        PERSONAL DEMO
-      </div>
+      <img
+        class="watermark-image"
+        src="https://raw.githubusercontent.com/royalcyber7r/Drivingcard/main/Logo/brta.png"
+        alt="Demo Watermark"
+      >
 
       <div class="card-top">
 
         <div class="brand-mark">
-          <div class="brand-inner">DEMO</div>
+          <img
+            src="https://raw.githubusercontent.com/royalcyber7r/Drivingcard/main/Logo/brta.png"
+            alt="Personal Demo Brand">
         </div>
 
         <div class="card-title">
-          <strong>ব্যক্তিগত নমুনা কার্ড</strong>
-          <b>Personal Sample Card</b>
+          <strong>পেশাদার ই-ড্রাইভিং লাইসেন্স</strong>
+          <b>Professional E-Driving License</b>
         </div>
 
         <div class="country-header-stack">
-          <div class="country-text">
-            <strong>PERSONAL DESIGN</strong>
-            <small>Sample Card — Not Official</small>
-          </div>
-        </div>
 
+  <div class="country-label">
+
+    <div class="country-text">
+      <strong>গণপ্রজাতন্ত্রী বাংলাদেশ</strong>
+      <small>People’s Republic of Bangladesh</small>
+    </div>
+
+    <div class="country-logo">
+      <img
+        src="YOUR_LOGO_IMAGE_LINK"
+        alt="Demo Logo">
+    </div>
+
+  </div>
+
+  <div class="header-qr-area">
+    <div id="qrCode"></div>
+  </div>
+
+</div>
+        
       </div>
 
       <div class="front-content">
 
         <div class="photo-frame">
-          <img id="cardPhoto" alt="Demo Photo">
+          <img id="cardPhoto" alt="Uploaded Demo Photo">
         </div>
 
         <div class="details">
@@ -81,80 +98,75 @@
           </div>
 
           <div class="field">
-            <span>জন্ম তারিখ / Date of Birth</span>
-            <strong id="cardDob">—</strong>
-          </div>
+  <span>জন্ম তারিখ / Date of Birth</span>
+  <strong id="cardDob">—</strong>
+</div>
+
+<div class="field">
+  <span>রক্তের গ্রুপ / Blood Group</span>
+  <strong id="cardBloodGroup">—</strong>
+</div>
 
           <div class="field">
-            <span>রক্তের গ্রুপ / Blood Group</span>
-            <strong id="cardBloodGroup">—</strong>
-          </div>
-
-          <div class="field">
-            <span>অভিভাবক / Guardian</span>
+            <span>পিতা / স্বামী / Guardian</span>
             <strong id="cardGuardian">—</strong>
           </div>
 
           <div class="date-row">
 
-            <div class="field">
-              <span>প্রস্তুতির তারিখ / Date</span>
-              <strong id="cardIssue">—</strong>
-            </div>
+  <div class="field">
+    <span>ইস্যু / Issue</span>
+    <strong id="cardIssue">—</strong>
+  </div>
 
-            <div class="field">
-              <span>নমুনা মেয়াদ / Sample Validity</span>
-              <strong id="cardExpiry">—</strong>
-            </div>
+  <div class="field">
+    <span>মেয়াদ / Valid Until</span>
+    <strong id="cardExpiry">—</strong>
+  </div>
 
-          </div>
+</div>
 
-          <div class="field">
-            <span>Demo Information</span>
-            <strong id="cardIssuer">PERSONAL DESIGN</strong>
-          </div>
+<div class="field expiry-issuer">
+  <span>ডেমো প্রদানকারী / Demo Issuer</span>
+  <strong id="cardIssuer">—</strong>
+</div>
 
-          <div class="field">
-            <span>নমুনা রেফারেন্স / Reference</span>
-            <strong id="cardReference">—</strong>
-          </div>
-
+          
           <p class="tiny-note">
-            NOT AN OFFICIAL IDENTITY OR LICENSE DOCUMENT
+            PERSONAL DEMO ONLY — NOT VALID FOR IDENTIFICATION OR DRIVING
           </p>
 
-        </div>
+          <div class="reference-issuer-row">
 
-      </div>
+  <div class="field">
+    <span>ডেমো রেফারেন্স / Demo Reference</span>
+    <strong id="cardReference">—</strong>
+  </div>
 
-      <div class="front-side-qr">
-
-        <div class="front-large-qr">
-          <div id="qrCode"></div>
-        </div>
-
-        <div class="qr-caption">
-          DEMO QR
+</div>
         </div>
 
       </div>
 
       <div class="front-footer">
-        PERSONAL SAMPLE — NOT AN OFFICIAL DOCUMENT
+        PERSONAL DEMO CARD — NOT AN OFFICIAL DOCUMENT
       </div>
 
     </section>
 
-    <!-- BACK -->
+
+    <!-- BACK SIDE -->
 
     <section class="license-card back-card hidden" id="backCard">
 
-      <div class="demo-watermark">
-        PERSONAL DEMO
-      </div>
+      <img
+        class="watermark-image"
+        src="https://raw.githubusercontent.com/royalcyber7r/Drivingcard/main/Logo/brta.png"
+        alt="Demo Watermark"
+      >
 
       <div class="back-warning">
-        PERSONAL SAMPLE CARD — NOT OFFICIAL
+        PERSONAL DEMO CARD — NO OFFICIAL OR LEGAL VALIDITY
       </div>
 
       <div class="back-top">
@@ -169,7 +181,11 @@
         </div>
 
         <div class="back-brand">
-          <div class="brand-inner">DEMO</div>
+          <img
+            src="https://raw.githubusercontent.com/royalcyber7r/Drivingcard/main/Logo/brta.png"
+            alt="Personal Demo Brand"
+            class="back-brand-logo"
+          >
         </div>
 
       </div>
@@ -186,17 +202,17 @@
       <div class="back-columns">
 
         <div class="field">
-          <span>Sample Category</span>
+          <span>নমুনা যানবাহন শ্রেণি / Vehicle Class</span>
           <strong id="backClass">—</strong>
         </div>
 
         <div class="field">
-          <span>Sample Reference</span>
+          <span>Pre Ref No.</span>
           <strong id="backPreRefNo">—</strong>
         </div>
 
         <div class="field">
-          <span>Date</span>
+          <span>ইস্যু তারিখ / Issue Date</span>
           <strong id="backIssueDate">—</strong>
         </div>
 
@@ -204,17 +220,17 @@
 
       <div class="back-qr-area">
         <div id="backQrCode"></div>
-        <small>DEMO QR — NO OFFICIAL VERIFICATION</small>
+        <small>PERSONAL DEMO QR — NOT FOR OFFICIAL VERIFICATION</small>
       </div>
 
       <div class="back-message">
-        Personal design demonstration only.<br>
+        For personal design demonstration only.<br>
         No official verification service is connected.<br>
-        <strong>NOT AN OFFICIAL DOCUMENT</strong>
+        <strong>NOT A GOVERNMENT DOCUMENT</strong>
       </div>
 
       <div class="back-footer">
-        PERSONAL DEMO DESIGN
+        PERSONAL DEMO CARD DESIGN
       </div>
 
     </section>
@@ -222,18 +238,12 @@
   </div>
 
   <div class="action-buttons">
-    <button class="download-button" onclick="downloadPDF()">
-      Save PDF / Print
-    </button>
-
-    <button class="edit-button" onclick="editInformation()">
-      Edit Information
-    </button>
+    <button class="download-button" onclick="downloadPDF()">Save PDF / Print</button>
+    <button class="edit-button" onclick="editInformation()">Edit Information</button>
   </div>
 
   <div class="demo-notice">
-    এটি ব্যক্তিগত ডিজাইন ডেমো। কোনো সরকারি পরিচয়পত্র,
-    লাইসেন্স অথবা যাচাইকরণ নথি নয়।
+    এটি একটি ব্যক্তিগত ডিজাইন ডেমো। কোনো সরকারি পরিচয়পত্র বা বৈধ ড্রাইভিং লাইসেন্স নয়।
   </div>
 
 </main>
