@@ -139,7 +139,7 @@ function generateDemoQR(containerId) {
     text: demoQRData,
     width: 160,
     height: 160,
-    colorDark: maroonColor,
+    colorDark: "#4a0e0e",
     colorLight: "#ffffff",
     correctLevel: QRCode.CorrectLevel.L
   });
@@ -178,7 +178,7 @@ function generateBarcode() {
 
   JsBarcode("#demoBarcode", barcodeValue, {
     format: "CODE128",
-    lineColor: maroonColor,
+    lineColor: "#4a0e0e",
     background: "transparent",
     width: 3,
     height: 55,
