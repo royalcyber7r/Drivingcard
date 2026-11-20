@@ -344,10 +344,12 @@ body {
 
 /* DATE AND BLOOD GROUP */
 
-.date-row {
+.date-row,
+.reference-issuer-row {
   display: grid;
-  grid-template-columns: 1fr 0.75fr;
-  gap: 5px;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  align-items: start;
 }
 
 /* REFERENCE AND ISSUER */
