@@ -167,6 +167,7 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
+  justify-content: space-between;
   gap: 15px;
   width: 100%;
   height: 135px;
@@ -196,12 +197,13 @@ body {
 /* RIGHT HEADER TEXT */
 
 .country-label {
-  flex: 0 0 255px;
-  min-width: 255px;
+  flex: 0 0 auto;
+  min-width: 0;
+  max-width: 340px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 10px;
+  gap: 12px;
   text-align: right;
   color: var(--green);
 }
@@ -214,17 +216,18 @@ body {
 .country-text strong,
 .country-text small {
   display: block;
+  white-space: nowrap;
 }
 
 .country-text strong {
-  font-size: 25px;
+  font-size: 24px;
   font-family: "Noto Sans Bengali", sans-serif;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 .country-text small {
-  font-size: 20px;
-  margin-top: 5px;
+  font-size: 18px;
+  margin-top: 4px;
 }
 
 .country-logo {
