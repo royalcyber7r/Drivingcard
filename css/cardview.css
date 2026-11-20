@@ -462,7 +462,7 @@ body {
   display: block;
   width: 100%;
   max-width: 730px;
-  height: 105px;
+  height: 55px; /* লাল বক্সের উচ্চতা অনুযায়ী */
   margin: 0 auto;
 }
 
