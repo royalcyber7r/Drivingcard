@@ -176,13 +176,12 @@ function generateBarcode() {
 
   JsBarcode("#demoBarcode", barcodeValue, {
     format: "CODE128",
-    lineColor: "#8d353b",
-    background: "#ffffff",
-    width: 2,
-    height: 55,
-    displayValue: true,
-    fontSize: 12,
-    margin: 5
+    lineColor: "#4a0e0e",
+    background: "transparent",
+    width: 3,
+    height: 105,
+    displayValue: false,
+    margin: 0
   });
 
 }
