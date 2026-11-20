@@ -318,7 +318,7 @@ body {
 .details {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   min-width: 0;
   position: relative;
   z-index: 2;
