@@ -524,14 +524,15 @@ body {
   color: var(--muted);
 }
 
-/* BACK MESSAGE */
+/* BACK MESSAGE (পুরো কার্ডের মাঝখানে) */
 
 .back-message {
   position: absolute;
-  right: 28px;
+  left: 50%;
   bottom: 65px;
-  text-align: right;
-  color: #4b5563;
+  transform: translateX(-50%);
+  text-align: center;
+  color: black;
   font-size: 12px;
   line-height: 1.8;
 }
