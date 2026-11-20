@@ -220,13 +220,13 @@ body {
 }
 
 .country-text strong {
-  font-size: 14px;
+  font-size: 25px;
   font-family: "Noto Sans Bengali", sans-serif;
   line-height: 1.5;
 }
 
 .country-text small {
-  font-size: 10px;
+  font-size: 20px;
   margin-top: 5px;
 }
 
