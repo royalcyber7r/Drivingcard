@@ -73,10 +73,11 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
-  gap: 18px;
-  width: max-content;
+  gap: 24px;
+  width: 1064px;
+  min-width: 1064px;
   margin: 0 auto;
 }
 
@@ -84,7 +85,7 @@ body {
   display: block;
 }
 
-/* A4 CARD BASE (দুটি কার্ড পাশাপাশি A4 ল্যান্ডস্কেপে ফিট করার মাপ) */
+/* CARD BASE (ছবির অনুপাতে পাশাপাশি ২টি কার্ড) */
 
 .license-card {
   position: relative;
@@ -95,13 +96,13 @@ body {
   overflow: hidden;
   isolation: isolate;
   background: #fff;
-  border: 1px solid #292929;
+  border: 1.5px solid #222;
 }
 
 .watermark-image {
   position: absolute;
-  width: 220px;
-  height: 220px;
+  width: 215px;
+  height: 215px;
   max-width: none;
   left: 50%;
   top: 50%;
@@ -132,9 +133,9 @@ body {
 /* BRAND LOGO */
 
 .brand-mark {
-  width: 36px;
-  height: 36px;
-  flex: 0 0 36px;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
   border: 1.5px solid #668077;
   border-radius: 50%;
   display: flex;
@@ -162,8 +163,8 @@ body {
   justify-content: space-between;
   gap: 8px;
   width: 100%;
-  height: 70px;
-  padding: 6px 12px;
+  height: 62px;
+  padding: 6px 12px 2px;
 }
 
 .card-title {
@@ -172,18 +173,18 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2px;
+  gap: 1px;
 }
 
 .card-title strong {
   font-family: "Noto Sans Bengali", sans-serif;
   font-size: 12px;
-  line-height: 1.3;
+  line-height: 1.25;
 }
 
 .card-title b {
   font-size: 9px;
-  line-height: 1.3;
+  line-height: 1.25;
 }
 
 /* RIGHT HEADER TEXT */
@@ -218,18 +219,18 @@ body {
 .country-text strong {
   font-size: 12px;
   font-family: "Noto Sans Bengali", sans-serif;
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
 .country-text small {
-  font-size: 9.5px;
+  font-size: 9px;
   margin-top: 1px;
 }
 
 .country-logo {
-  width: 32px;
-  height: 32px;
-  flex: 0 0 32px;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -243,12 +244,12 @@ body {
   display: block;
 }
 
-/* FRONT QR */
+/* FRONT CONTENT */
 
 .front-content {
   position: relative;
   display: grid;
-  grid-template-columns: 125px minmax(0, 1fr);
+  grid-template-columns: 122px minmax(0, 1fr);
   gap: 12px;
   margin-top: 6px;
   padding: 0 12px;
@@ -257,10 +258,10 @@ body {
 
 .front-qr-box {
   position: absolute;
-  top: 0;
+  top: 2px;
   right: 12px;
-  width: 82px;
-  height: 82px;
+  width: 86px;
+  height: 86px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -278,9 +279,9 @@ body {
 /* PHOTO */
 
 .photo-frame {
-  width: 125px;
-  height: 145px;
-  border: 1.5px solid #292929;
+  width: 122px;
+  height: 146px;
+  border: 1.5px solid #222;
   background: #e5e7eb;
   overflow: hidden;
   position: relative;
@@ -300,9 +301,9 @@ body {
 .details {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 6px;
   min-width: 0;
-  padding-right: 90px;
+  padding-right: 94px;
   position: relative;
   z-index: 2;
 }
@@ -310,7 +311,7 @@ body {
 .field {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
   min-width: 0;
 }
 
@@ -319,12 +320,12 @@ body {
   color: var(--maroon);
   font-weight: 700;
   font-size: 8.5px;
-  line-height: 1.3;
+  line-height: 1.25;
 }
 
 .field strong {
   font-size: 9.5px;
-  line-height: 1.3;
+  line-height: 1.25;
   overflow-wrap: anywhere;
   color: var(--ink);
 }
@@ -335,7 +336,7 @@ body {
 .reference-issuer-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 6px;
+  gap: 8px;
   align-items: start;
 }
 
@@ -346,11 +347,11 @@ body {
 /* DEMO NOTE */
 
 .tiny-note {
-  color: #777;
-  font-size: 9px;
+  color: #666;
+  font-size: 8px;
   font-weight: 500;
   margin: 0;
-  line-height: 1.35;
+  line-height: 1.3;
 }
 
 /* FRONT & BACK FOOTER */
@@ -365,7 +366,7 @@ body {
   color: var(--maroon);
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
 }
 
 /* BACK CARD */
@@ -381,15 +382,15 @@ body {
   text-align: right;
   color: var(--maroon);
   font-weight: 700;
-  font-size: 11px;
-  margin: 0 0 8px;
+  font-size: 10.5px;
+  margin: 0 0 7px;
 }
 
 /* BACK TOP */
 
 .back-top {
   display: grid;
-  grid-template-columns: 54px minmax(0, 1fr) 36px;
+  grid-template-columns: 52px minmax(0, 1fr) 34px;
   gap: 10px;
   align-items: center;
 }
@@ -397,8 +398,8 @@ body {
 /* SMALL PHOTO */
 
 .mini-photo {
-  width: 54px;
-  height: 64px;
+  width: 52px;
+  height: 62px;
   background: #eee;
   overflow: hidden;
 }
@@ -429,8 +430,8 @@ body {
 
 .back-brand-logo {
   display: block;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
 }
 
@@ -438,17 +439,17 @@ body {
 
 .back-info {
   margin-top: 8px;
-  padding-left: 64px;
+  padding-left: 62px;
 }
 
 /* BACK FIELDS */
 
 .back-columns {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: 1.45fr 1fr;
   gap: 12px;
   margin-top: 10px;
-  padding-left: 64px;
+  padding-left: 62px;
   align-items: start;
 }
 
@@ -580,7 +581,7 @@ body {
 @media print {
   @page {
     size: A4 landscape;
-    margin: 6mm;
+    margin: 8mm;
   }
 
   html,
@@ -617,10 +618,11 @@ body {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 12px !important;
-    width: 100% !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    gap: 24px !important;
+    width: 1064px !important;
+    min-width: 1064px !important;
     margin: 0 auto !important;
   }
 
