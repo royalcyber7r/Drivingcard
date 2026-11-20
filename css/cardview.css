@@ -358,6 +358,7 @@ body {
   gap: 15px;
   margin-top: 8px;
   min-width: 0;
+  align-items: start;
 }
 
 .reference-issuer-row .field {
@@ -368,7 +369,6 @@ body {
   font-size: 15px;
   overflow-wrap: anywhere;
 }
-
 /* DEMO NOTE */
 
 .tiny-note {
