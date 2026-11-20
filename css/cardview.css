@@ -267,9 +267,9 @@ body {
 .front-qr-box {
   position: absolute;
   top: 0;
-  right: 0;
-  width: 120px;  /* প্রয়োজন অনুযায়ী সাইজ কম-বেশি করতে পারেন */
-  height: 120px;
+  right: 10px;
+  width: 160px;  /* প্রয়োজন অনুযায়ী সাইজ কম-বেশি করতে পারেন */
+  height: 160px;
   background: #ffffff;
   border: 1.5px solid #222;
   padding: 4px;
