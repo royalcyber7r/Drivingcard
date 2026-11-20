@@ -408,10 +408,10 @@ body {
 /* BACK WARNING */
 
 .back-warning {
-  text-align: center;
+  text-align: right;
   color: var(--maroon);
   font-weight: 700;
-  font-size: 13px;
+  font-size: 20px;
   margin: 3px 0 17px;
 }
 
