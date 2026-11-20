@@ -447,6 +447,7 @@ body {
 .barcode-area {
   text-align: center;
   min-width: 0;
+  width: 100%;
 }
 
 .barcode-area span {
@@ -460,7 +461,9 @@ body {
 #demoBarcode {
   display: block;
   width: 100%;
-  height: 75px;
+  max-width: 730px;
+  height: 105px;
+  margin: 0 auto;
 }
 
 /* BACK BRAND */
