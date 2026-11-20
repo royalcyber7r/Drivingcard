@@ -132,7 +132,6 @@ body {
 .back-columns,
 .back-qr-area,
 .back-message,
-.back-right-emblem,
 .back-footer {
   position: relative;
   z-index: 2;
@@ -245,6 +244,7 @@ body {
   display: block;
 }
 
+
 /* HEADER QR */
 
 .header-logo-area {
@@ -265,7 +265,7 @@ body {
   position: absolute;
   top: 0;
   right: 10px;
-  width: 160px;
+  width: 160px;  /* প্রয়োজন অনুযায়ী সাইজ কম-বেশি করতে পারেন */
   height: 160px;
   align-items: center;
   justify-content: center;
@@ -374,7 +374,6 @@ body {
   font-size: 15px;
   overflow-wrap: anywhere;
 }
-
 /* DEMO NOTE */
 
 .tiny-note {
@@ -403,7 +402,6 @@ body {
 /* BACK CARD */
 
 .back-card {
-  position: relative;
   padding: 22px 28px;
 }
 
@@ -481,40 +479,29 @@ body {
 
 .back-columns {
   display: grid;
-  grid-template-columns: 1.8fr 1fr;
+  grid-template-columns: 3.3fr 1fr 1fr;
   gap: 25px;
-  margin-top: 24px;
+  margin-top: 28px;
   align-items: start;
 }
 
-.back-columns .pre-ref-block {
-  display: flex;
-  flex-direction: column;
-}
-
-.back-issue-below-ref {
-  margin-top: 14px;
-}
-
-/* BACK QR (বাম পাশে বড় QR, বর্ডার ছাড়া) */
+/* BACK QR */
 
 .back-qr-area {
-  position: absolute;
-  left: 28px;
-  bottom: 52px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 6px;
-  margin: 0;
+  margin-top: 22px;
+  margin-left: 0;
 }
 
 #backQrCode {
-  width: 155px;
-  height: 155px;
-  padding: 0;
-  background: transparent;
-  border: 0;
+  width: 85px;
+  height: 85px;
+  padding: 3px;
+  background: #fff;
+  border: 1px solid #d9dee8;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -523,10 +510,10 @@ body {
 #backQrCode img,
 #backQrCode canvas {
   display: block;
-  width: 155px !important;
-  height: 155px !important;
-  max-width: 155px;
-  max-height: 155px;
+  width: 77px !important;
+  height: 77px !important;
+  max-width: 77px;
+  max-height: 77px;
 }
 
 .back-qr-area small {
@@ -540,45 +527,17 @@ body {
 
 .back-message {
   position: absolute;
-  left: 50%;
-  bottom: 58px;
-  transform: translateX(-50%);
-  width: 260px;
-  text-align: center;
-  color: #111;
+  right: 380px;
+  bottom: 65px;
+  width: 240px;       /* বক্সের জায়গা অনুযায়ী প্রস্থ ঠিক রাখা হয়েছে */
+  text-align: center; /* সব লাইন একদম সেন্টারে আসবে */
+  color: black;
   font-size: 16px;
-  line-height: 1.6;
-}
-
-.back-message-line {
-  width: 175px;
-  height: 1px;
-  background: #222;
-  margin: 0 auto 8px auto;
+  line-height: 1.8;
 }
 
 .back-message strong {
   color: var(--maroon);
-}
-
-/* BACK RIGHT EMBLEM */
-
-.back-right-emblem {
-  position: absolute;
-  right: 28px;
-  bottom: 65px;
-  width: 100px;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.back-right-emblem img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  display: block;
 }
 
 /* BUTTONS */
