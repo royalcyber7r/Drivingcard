@@ -480,7 +480,7 @@ body {
 
 .back-columns {
   display: grid;
-  grid-template-columns: 1.3fr 1fr 1fr;
+  grid-template-columns: 3.3fr 1fr 1fr;
   gap: 25px;
   margin-top: 28px;
   align-items: start;
