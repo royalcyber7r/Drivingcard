@@ -429,7 +429,6 @@ body {
 .mini-photo {
   width: 105px;
   height: 125px;
-  border: 2px solid #aaa;
   background: #eee;
   overflow: hidden;
 }
