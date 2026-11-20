@@ -528,12 +528,12 @@ body {
 
 .back-message {
   position: absolute;
-  right: 28px;
+  right: 380px;
   bottom: 65px;
   width: 240px;       /* বক্সের জায়গা অনুযায়ী প্রস্থ ঠিক রাখা হয়েছে */
   text-align: center; /* সব লাইন একদম সেন্টারে আসবে */
   color: black;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.8;
 }
 
