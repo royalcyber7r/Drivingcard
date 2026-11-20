@@ -482,16 +482,18 @@ body {
 
 .back-info {
   margin-top: 20px;
+  left: 180px;
 }
 
 /* BACK FIELDS */
 
 .back-columns {
   display: grid;
-  grid-template-columns: 1.8fr 1fr;
+  grid-template-columns: 1.4fr 1fr;
   gap: 25px;
   margin-top: 24px;
   align-items: start;
+  left: 180px;
 }
 
 .back-columns .pre-ref-block {
